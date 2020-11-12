@@ -1,0 +1,93 @@
+name: Lint and Test Charts
+
+on:
+  push:
+    branches: ['*']
+  pull_request:
+    branches: [main]
+
+env:
+  HELM_VERSION: 3.4.0
+  PYTHON_VERSION: 3.7
+
+jobs:
+  lint-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: "${{ env.HELM_VERSION }}"
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "${{ env.PYTHON_VERSION }}"
+
+      - name: Run Helm lint
+        run: helm lint charts/*
+
+      - name: Run Chart Testing lint
+        uses: helm/chart-testing-action@v1.1.0
+        with:
+          command: lint
+          config: .github/ct.yaml
+
+  install-chart:
+    name: install-chart
+    runs-on: ubuntu-latest
+    needs:
+      - lint-chart
+    strategy:
+      matrix:
+        k8s:
+          - v1.16.9
+          - v1.17.11
+          - v1.18.8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: "${{ env.HELM_VERSION }}"
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "${{ env.PYTHON_VERSION }}"
+
+      - name: Create kind ${{ matrix.k8s }} cluster
+        uses: helm/kind-action@master
+        with:
+          node_image: kindest/node:${{ matrix.k8s }}
+
+      - name: Run Chart Testing install
+        uses: helm/chart-testing-action@v1.1.0
+        with:
+          command: install
+          config: .github/ct.yaml
+
+  release-chart:
+    name: release-chart
+    runs-on: ubuntu-latest
+    needs:
+      - lint-chart
+      - install-chart
+    # Run release workflow for release branches only
+    if: startsWith(github.ref, 'refs/heads/release-v')
+    steps:
+      - name: Invoke Release Chart workflow
+        uses: benc-uk/workflow-dispatch@v1.1
+        with:
+          workflow: Release Charts
+          # Please note, the default secrets "GITHUB_TOKEN" cannot be used here.
+          # Github doesn't allow it to run other workflows. Thus; a PAT should be created and used.
+          token: '${{ secrets.WORKFLOWS_RUNNER }}'
