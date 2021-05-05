@@ -10,7 +10,7 @@ general:
 
 image:
   repository: camunda/camunda-bpm-platform
-  tag: tomcat-latest
+  tag: latest
   pullPolicy: IfNotPresent
   pullSecrets: []
 
