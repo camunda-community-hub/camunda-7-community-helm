@@ -65,7 +65,7 @@ jobs:
           python-version: "${{ env.PYTHON_VERSION }}"
 
       - name: Create kind ${{ matrix.k8s }} cluster
-        uses: helm/kind-action@master
+        uses: helm/kind-action@v1.1.0
         with:
           node_image: kindest/node:${{ matrix.k8s }}
 
