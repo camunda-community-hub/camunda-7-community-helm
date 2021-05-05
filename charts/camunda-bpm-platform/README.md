@@ -23,7 +23,7 @@ $ helm install demo camunda/camunda-bpm-platform
 Camunda BPM open-source Docker image comes in 3 distributions `tomcat`, `wildfly`, and `run`.
 Each distro has different tags, check the list of [supported tags/releases](https://github.com/camunda/docker-camunda-bpm-platform#supported-tagsreleases) by the docker project for more details.
 
-The image used in the chart is `tomcat-latest`.
+The image used in the chart is `latest` (which's actually `tomcat-latest`).
 
 ### Database
 
