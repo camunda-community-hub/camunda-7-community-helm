@@ -1,17 +1,6 @@
-<!-- omit in toc -->
 # Camunda BPM Platform Helm Chart
 
 A Helm chart for Camunda BPM, the open-source BPM platform.
-
-<!-- omit in toc -->
-## ToC
-- [Install](#install)
-- [Links](#links)
-- [Configuration](#configuration)
-  - [Image](#image)
-  - [Database](#database)
-  - [Metrics](#metrics)
-  - [Misc](#misc)
 
 ## Install
 
@@ -40,12 +29,10 @@ The image used in the chart is `tomcat-latest`.
 
 Camunda BPM has 2 options in terms of databases.
 
-<!-- omit in toc -->
 #### Internal database
 The H2 database is used by default which works fine if you just want to test Camunda BPM Platform.
 But since the database is embedded, only 1 deployment replica could be used.
 
-<!-- omit in toc -->
 #### External database
 Databases like PostgreSQL or MySQL could be used also which is the same as in production.
 Here is an example to use PostgreSQL as an external database.
