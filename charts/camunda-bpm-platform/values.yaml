@@ -44,7 +44,7 @@ postgresql:
 
   # define if you create a PVC for the PostgreSQL database
   persistence:
-    enabled: true
+    enabled: false
 
 # parameters will be also used by subchart @bitnami/mysql
 mysql:
@@ -59,11 +59,11 @@ mysql:
   # define if you create a PVC for the MySQL database
   primary:
     persistence:
-      enabled: true
+      enabled: false
 
 tags:
   managed-postgresql: false
-  managed-mysql: true
+  managed-mysql: false
 
 service:
   type: ClusterIP
