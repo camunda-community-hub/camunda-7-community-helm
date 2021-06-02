@@ -26,21 +26,21 @@ image:
 database:
   # In case H2 database is used.
   internal:
-    enabled: false
+    enabled: true
     diskSize: 1G
   # In case PostgreSQL or MySQL databases are used.
   external:
-    enabled: true
+    enabled: false
     credentialsSecretName: camunda-bpm-platform-credentials
     driver: org.postgresql.Driver
     url: jdbc:postgresql://camunda-bpm-postgresql:5432/postgres
 
 # parameters will be also used by subchart @bitnami/postgresql
 postgresql:
-  postgresqlUsername: postgres
-  postgresqlPassword: postgres
-  postgresDatabase: camunda
-  postgresPort: 5432
+  postgresqlUsername: camunda-user
+  postgresqlPassword: camunda
+  postgresqlDatabase: camunda
+  postgresqlPort: 5432
 
   # define if you create a PVC for the PostgreSQL database
   persistence:
@@ -49,9 +49,10 @@ postgresql:
 # parameters will be also used by subchart @bitnami/mysql
 mysql:
   auth:
+    username: camunda-user
+    password: camunda
     database: camunda
-    username: mysql
-    password: mysql
+    # you should alter this parameter on bootstrap
     rootPassword: mysql
   port: 3306
 

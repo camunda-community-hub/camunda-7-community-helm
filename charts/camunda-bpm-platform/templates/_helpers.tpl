@@ -83,7 +83,7 @@ Connection string for external database if used managed DB
         
         {{- if index .Values.tags "managed-postgresql" -}}
 
-            {{- printf "jdbc:postgresql://%s-postgresql:%d/%s" .Release.Name  (.Values.postgresql.postgresPort | int )  .Values.postgresql.postgresDatabase  -}}
+            {{- printf "jdbc:postgresql://%s-postgresql:%d/%s" .Release.Name  (.Values.postgresql.postgresqlPort | int )  .Values.postgresql.postgresqlDatabase  -}}
             
         {{- else if index .Values.tags "managed-mysql" -}}
 
