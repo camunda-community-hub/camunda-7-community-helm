@@ -60,3 +60,50 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+
+{{/*
+The name for secret to create in which the authentication data for DB connection is stored
+*/}}
+{{- define "camunda-bpm-platform.database.external.credentialsSecretName" -}}
+
+{{- default .Values.database.external.credentialsSecretName (include "camunda-bpm-platform.name" . )}}-external-credentials
+{{- end }}
+
+
+
+{{/*
+Connection string for external database if used managed DB
+*/}}
+{{- define "camunda-bpm-platform.database.external.url" -}}
+
+    {{- if .Values.database.external.enabled -}}
+
+        
+        {{- if index .Values.tags "managed-postgresql" -}}
+
+            {{- printf "jdbc:postgresql://%s-postgresql:%d/%s" .Release.Name  (.Values.postgresql.postgresPort | int )  .Values.postgresql.postgresDatabase  -}}
+            
+        {{- else if index .Values.tags "managed-mysql" -}}
+
+            {{- printf "jdbc:mysql://%s-mysql:%d/%s" .Release.Name  (.Values.mysql.port | int )  .Values.mysql.auth.database  -}}
+        
+        {{- end -}}
+
+    {{- end -}}
+{{- end -}}
+
+{{/* Driver to connect to external DB */}}
+{{- define "camunda-bpm-platform.database.external.driver" -}}
+
+    {{- if .Values.database.external.enabled -}}
+        
+        {{- if index .Values.tags "managed-postgresql" -}}
+            {{- printf "org.postgresql.Driver"  -}}
+        {{- else if index .Values.tags "managed-mysql" -}}
+            {{- printf "com.mysql.jdbc.Driver"  -}}
+        {{- end -}}
+
+    {{- end -}}
+{{- end -}}

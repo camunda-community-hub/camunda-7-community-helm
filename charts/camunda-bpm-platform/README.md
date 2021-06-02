@@ -54,7 +54,7 @@ database:
     enabled: false
   external:
     enabled: true
-    credentialsSecertName: camunda-bpm-platform-postgresql-credentials
+    credentialsSecretName: camunda-bpm-platform-postgresql-credentials
     driver: "org.postgresql.Driver"
     url: "jdbc:postgresql://cambpm-demo-db:5432/process-engine"
 ```

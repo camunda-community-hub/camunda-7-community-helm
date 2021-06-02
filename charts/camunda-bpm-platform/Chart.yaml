@@ -21,3 +21,17 @@ sources:
   - https://github.com/camunda/camunda-bpm-platform
 maintainers:
   - name: Ahmed AbouZaid
+
+
+dependencies:
+  - name: postgresql
+    version: 10.4.8
+    repository: "@bitnami"
+    tags:
+      - managed-postgresql
+
+  - name: mysql
+    version: 8.5.10
+    repository: "@bitnami"
+    tags:
+      - managed-mysql

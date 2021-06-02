@@ -26,3 +26,19 @@ Fail in case internal database is enabled and replicaCount is more than "1".
     {{ fail "Deployment replicaCount cannot be more than 1 in case internal database is used."}}
 {{- end }}
 {{- end }}
+
+{{/*
+Should use either PostgreSQL or MySQL connection driver
+*/}}
+{{- if not (or (eq .Values.database.external.driver "org.postgresql.Driver")  (eq .Values.database.external.driver "com.mysql.jdbc.Driver") ) -}}
+{{ fail "Unrecognized connection driver, use either 'org.postgresql.Driver' or `com.mysql.jdbc.Driver`."}}
+{{- end }}
+
+{{/* 
+Only one managed database can be used
+*/}}
+
+{{- if and (index .Values.tags "managed-postgresql") (index .Values.tags "managed-mysql") -}}
+
+{{ fail "Please choose only one managed database: either Postgres or MySQL, not both" }}
+{{- end -}}

@@ -35,23 +35,23 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: DEBUG
-              value: "{{ .Values.general.debug }}"
+              value: {{ .Values.general.debug | quote }}
             - name: JMX_PROMETHEUS
-              value: "{{ .Values.metrics.enabled }}"
+              value: {{ .Values.metrics.enabled | quote }}
             {{- if .Values.database.external.enabled }}
             - name: DB_DRIVER
-              value: "{{ .Values.database.external.driver }}"
+              value:  {{ default .Values.database.external.driver (include "camunda-bpm-platform.database.external.driver" . ) | quote }}
             - name: DB_URL
-              value: "{{ .Values.database.external.url }}"
+              value: {{ include "camunda-bpm-platform.database.external.url" . | default .Values.database.external.url | quote }}
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.database.external.credentialsSecertName }}
+                  name: {{ .Values.database.external.credentialsSecretName }}
                   key: DB_USERNAME
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.database.external.credentialsSecertName }}
+                  name: {{ .Values.database.external.credentialsSecretName }}
                   key: DB_PASSWORD
             {{- end }}
           ports:
