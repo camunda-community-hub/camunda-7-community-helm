@@ -35,15 +35,18 @@ database:
     driver: org.postgresql.Driver
     url: jdbc:postgresql://camunda-bpm-postgresql:5432/postgres
 
+# parameters will be also used by subchart @bitnami/postgresql
 postgresql:
   postgresqlUsername: postgres
   postgresqlPassword: postgres
   postgresDatabase: camunda
   postgresPort: 5432
 
+  # define if you create a PVC for the PostgreSQL database
   persistence:
     enabled: true
 
+# parameters will be also used by subchart @bitnami/mysql
 mysql:
   auth:
     database: camunda
@@ -52,6 +55,7 @@ mysql:
     rootPassword: mysql
   port: 3306
 
+  # define if you create a PVC for the MySQL database
   primary:
     persistence:
       enabled: true

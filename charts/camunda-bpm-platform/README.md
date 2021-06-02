@@ -20,22 +20,51 @@ $ helm install demo camunda/camunda-bpm-platform
 
 ### Image
 
-Camunda BPM open-source Docker image comes in 3 distributions `tomcat`, `wildfly`, and `run`.
+Camunda BPM open-source Docker image comes in 3 distributions `tomcat` , `wildfly` , and `run` .
 Each distro has different tags, check the list of [supported tags/releases](https://github.com/camunda/docker-camunda-bpm-platform#supported-tagsreleases) by the docker project for more details.
 
-The image used in the chart is `latest` (which's actually `tomcat-latest`).
+The image used in the chart is `latest` (which's actually `tomcat-latest` ).
 
 ### Database
 
 Camunda BPM has 2 options in terms of databases.
 
 #### Internal database
+
 The H2 database is used by default which works fine if you just want to test Camunda BPM Platform.
 But since the database is embedded, only 1 deployment replica could be used.
 
 #### External database
+
 Databases like PostgreSQL or MySQL could be used also which is the same as in production.
-Here is an example to use PostgreSQL as an external database.
+
+You have the option to use a managed instanse of whether PostgreSQL or MySQL in your Camunda BPM installation.
+
+The chart integrates with corresponding subcharts which installs appropriate databases. The boolean variables `tags.managed-postgresql` and `tags.managed-mysql` gives you the option to choose the RDMS you prefer. By default, neither databases are installed.
+
+```shell
+# postgresql + camunda
+helm install camunda camunda-bpm-platform --set tags.managed-postgresql=true
+
+# mysql + camunda
+helm install camunda camunda-bpm-platform --set tags.managed-mysql=true
+```
+
+The chart parameters will align according to the chosen managed database, e.g. driver, connection URL and auth data. Also, the special secret will be created to store authentication info for Camunda BPM to access the DB.
+
+> Warning: deployments of Camunda BPM and PostgreSQL/MySQL are not syncronized. Therefore, Camunda BPM can fails several times until the RDMS is becomes ready.
+
+> Warning: you have an option to use only one managed DB. You cannot combine woth `tags.managed-postgresql` and `tags.managed-mysql` . If you do so, the chart installation will fail due to values constrains:
+
+```shell
+# will fail
+helm install camunda camunda-bpm-platform --set tags.managed-postgresql=true,tags.managed.mysql=true
+
+```
+
+Otherwise, you may use an external database, but without an managed database. In this case, do not specify `tags.managed-*` paramenters and you should create the secret by yourself.
+
+Here is an example to use PostgreSQL as an external database, without any managed installation.
 
 First, create the secret that has the database credentials.
 
@@ -58,8 +87,6 @@ database:
     driver: "org.postgresql.Driver"
     url: "jdbc:postgresql://cambpm-demo-db:5432/process-engine"
 ```
-
-**Please note**, this Helm chart doesn't manage any external database, it just uses what's configured.
 
 ### Metrics
 
