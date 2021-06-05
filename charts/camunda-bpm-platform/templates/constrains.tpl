@@ -30,8 +30,8 @@ Fail in case internal database is enabled and replicaCount is more than "1".
 {{/*
 Should use either PostgreSQL or MySQL connection driver
 */}}
-{{- if not (or (eq .Values.database.external.driver "org.postgresql.Driver")  (eq .Values.database.external.driver "com.mysql.jdbc.Driver") ) -}}
-{{ fail "Unrecognized connection driver, use either 'org.postgresql.Driver' or `com.mysql.jdbc.Driver`."}}
+{{- if not (or (eq .Values.database.external.driver "org.postgresql.Driver")  (eq .Values.database.external.driver "com.mysql.cj.jdbc.Driver") ) -}}
+{{ fail "Unrecognized connection driver, use either 'org.postgresql.Driver' or `com.mysql.cj.jdbc.Driver`."}}
 {{- end }}
 
 {{/* 

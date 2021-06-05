@@ -102,7 +102,7 @@ Connection string for external database if used managed DB
         {{- if index .Values.tags "managed-postgresql" -}}
             {{- printf "org.postgresql.Driver"  -}}
         {{- else if index .Values.tags "managed-mysql" -}}
-            {{- printf "com.mysql.jdbc.Driver"  -}}
+            {{- printf "com.mysql.cj.jdbc.Driver"  -}}
         {{- end -}}
 
     {{- end -}}
