@@ -1,0 +1,54 @@
+{{- if and (.Values.database.external.enabled) (or (index .Values.tags "managed-postgresql") (index .Values.tags "managed-mysql")) -}}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "camunda-bpm-platform.fullname" . }}-db-connection"
+  labels:
+    {{- include "camunda-bpm-platform.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    {{- if index .Values.tags "managed-postgresql" }}
+    - name: psql
+      image: postgres:12
+      command: ['pg_isready']     
+      args: [
+          "--host", "{{ .Release.Name }}-postgresql",
+          "--port", "{{ .Values.postgresql.postgresqlPort }}",
+          "--dbname", {{ .Values.postgresql.postgresqlDatabase | quote }}
+          "--timeout", "60"
+      ]
+      env:
+      # https://stackoverflow.com/questions/6405127/how-do-i-specify-a-password-to-psql-non-interactively/6405296
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.database.external.credentialsSecretName }}
+              key: "DB_PASSWORD"
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.database.external.credentialsSecretName }}
+              key: "DB_USERNAME"        
+    {{- end }}
+    {{- if index .Values.tags "managed-mysql" }}
+    - name: mysql
+      image: bitnami/mysql:8.0.25-debian-10-r16
+      command: ['/bin/bash', "-c"]     
+      args:
+          - |
+            password_aux="${MYSQL_ROOT_PASSWORD:-}"
+            if [[ -f "${MYSQL_ROOT_PASSWORD_FILE:-}" ]]; then
+                password_aux=$(cat "$MYSQL_ROOT_PASSWORD_FILE")
+            fi
+            mysqladmin -uroot -p"${password_aux}" -h {{ .Release.Name }}-mysql -P {{ .Values.mysql.port }} --wait=60 status
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-mysql
+              key: "mysql-root-password"      
+    {{- end }}  
+  restartPolicy: Never
+{{- end }}
