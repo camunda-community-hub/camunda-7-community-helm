@@ -31,16 +31,16 @@ Camunda BPM has 2 options in terms of databases.
 
 #### Internal database
 
-The H2 database is used by default which works fine if you just want to test Camunda BPM Platform.
+The H2 database is used by default which works fine if you just want to test the Camunda BPM Platform.
 But since the database is embedded, only 1 deployment replica could be used.
 
 #### External database
 
 Databases like PostgreSQL or MySQL could be used also which is the same as in production.
 
-You have the option to use a managed instanse of whether PostgreSQL or MySQL in your Camunda BPM installation.
+You have the option to use a managed instance of whether PostgreSQL or MySQL in your Camunda BPM installation.
 
-The chart integrates with corresponding subcharts which installs appropriate databases. The boolean variables `tags.managed-postgresql` and `tags.managed-mysql` gives you the option to choose the RDMS you prefer. By default, neither databases are installed.
+The chart integrates with corresponding subcharts which installs appropriate databases. The boolean variables `tags.managed-postgresql` and `tags.managed-mysql` gives you the option to choose the RDMS you prefer. By default, neither database is installed.
 
 ```shell
 # postgresql + camunda
@@ -50,11 +50,11 @@ helm install camunda camunda-bpm-platform --set tags.managed-postgresql=true
 helm install camunda camunda-bpm-platform --set tags.managed-mysql=true
 ```
 
-The chart parameters will align according to the chosen managed database, e.g. driver, connection URL and auth data. Also, the special secret will be created to store authentication info for Camunda BPM to access the DB.
+The chart parameters will align according to the chosen managed database, e.g. driver, connection URL, and auth data. Also, the special secret will be created to store authentication info for Camunda BPM to access the DB.
 
-> Warning: deployments of Camunda BPM and PostgreSQL/MySQL are not syncronized. Therefore, Camunda BPM can fails several times until the RDMS is becomes ready.
+> Warning: deployments of Camunda BPM and PostgreSQL/MySQL are not synchronized. Therefore, Camunda BPM can fail several times until the RDMS becomes ready.
 
-> Warning: you have an option to use only one managed DB. You cannot combine woth `tags.managed-postgresql` and `tags.managed-mysql` . If you do so, the chart installation will fail due to values constrains:
+> Warning: you have an option to use only one managed DB. You cannot combine woth `tags.managed-postgresql` and `tags.managed-mysql` . If you do so, the chart installation will fail due to values constraints:
 
 ```shell
 # will fail
@@ -62,7 +62,7 @@ helm install camunda camunda-bpm-platform --set tags.managed-postgresql=true,tag
 
 ```
 
-Otherwise, you may use an external database, but without an managed database. In this case, do not specify `tags.managed-*` paramenters and you should create the secret by yourself.
+Otherwise, you may use an external database, but without a managed database. In this case, do not specify `tags.managed-*` parameters and you should create the secret by yourself.
 
 Here is an example to use PostgreSQL as an external database, without any managed installation.
 
