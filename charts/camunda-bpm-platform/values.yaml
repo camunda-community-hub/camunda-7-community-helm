@@ -10,7 +10,7 @@ general:
 
 image:
   repository: camunda/camunda-bpm-platform
-  tag: latest
+  tag: run-latest
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -58,7 +58,8 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: camunda-bpm-platform.local
-      paths: []
+      paths:
+        - /
   tls: []
   #  - secretName: camunda-bpm-platform-tls
   #    hosts:

@@ -65,9 +65,9 @@ spec:
             {{- end }}
           readinessProbe:
             httpGet:
-              path: /camunda/
+              path: /
               port: http
-            initialDelaySeconds: 60
+            initialDelaySeconds: 180
             periodSeconds: 60
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
