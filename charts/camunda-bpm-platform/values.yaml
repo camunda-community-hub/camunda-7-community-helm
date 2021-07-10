@@ -14,17 +14,13 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
 
+# By default H2 database is used, which is handy for demos and tests,
+# however, H2 is not supported in a clustered scenario.
+# So for real-world workloads, an external database like PostgreSQL should be used.
 database:
-  # In case H2 database is used.
-  internal:
-    enabled: true
-    diskSize: 1G
-  # In case PostgreSQL or MySQL databases are used.
-  external:
-    enabled: false
-    credentialsSecertName: ""
-    driver: ""
-    url: ""
+  driver: org.h2.Driver
+  url: jdbc:h2:./camunda-h2-dbs/process-engine
+  credentialsSecretName: ""
 
 service:
   type: ClusterIP

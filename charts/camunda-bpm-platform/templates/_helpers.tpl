@@ -60,3 +60,15 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Check if H2 database is used
+Note that Helm template always retruns string, so this is not really a bool.
+*/}}
+{{- define "camunda-bpm-platform.h2DatabaseIsUsed" -}}
+{{- if (hasPrefix "jdbc:h2" .Values.database.url) -}}
+true
+{{- else -}}
+false
+{{- end }}
+{{- end }}

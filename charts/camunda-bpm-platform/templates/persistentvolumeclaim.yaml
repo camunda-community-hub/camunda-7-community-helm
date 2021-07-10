@@ -1,8 +1,8 @@
-{{- if .Values.database.internal.enabled -}}
+{{- if eq (include "camunda-bpm-platform.h2DatabaseIsUsed" .) "true" -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "camunda-bpm-platform.fullname" . }}-database
+  name: {{ include "camunda-bpm-platform.fullname" . }}-database-h2
   labels:
     {{- include "camunda-bpm-platform.labels" . | nindent 4 }}
 spec:
@@ -10,5 +10,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: "{{ .Values.database.internal.diskSize }}"
+      storage: 1G
 {{- end }}
