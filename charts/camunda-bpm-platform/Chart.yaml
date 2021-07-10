@@ -20,4 +20,5 @@ sources:
   - https://github.com/camunda/docker-camunda-bpm-platform
   - https://github.com/camunda/camunda-bpm-platform
 maintainers:
-  - name: Ahmed AbouZaid
+  - name: aabouzaid
+    url: https://tech.aabouzaid.com/
