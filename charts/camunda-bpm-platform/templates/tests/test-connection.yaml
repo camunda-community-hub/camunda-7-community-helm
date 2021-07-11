@@ -11,7 +11,7 @@ spec:
     - name: curl
       image: curlimages/curl
       command: ['curl']
-      # CamundaBPM service could take sometime to start, so setting a retry mechanism.
+      # Camunda BPM Platform service could take sometime to start, so setting a retry mechanism.
       args: [
         '--retry-connrefused',
         '--connect-timeout', '5',
