@@ -54,7 +54,8 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: camunda-bpm-platform.local
-      paths: []
+      paths:
+        - /
   tls: []
   #  - secretName: camunda-bpm-platform-tls
   #    hosts:
