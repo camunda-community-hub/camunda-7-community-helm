@@ -53,6 +53,8 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.database.external.credentialsSecertName }}
                   key: DB_PASSWORD
+            - name: DB_VALIDATE_ON_BORROW
+              value: "{{ .Values.database.external.validateOnBorrow }}"
             {{- end }}
           ports:
             - name: {{ .Values.service.portName }}

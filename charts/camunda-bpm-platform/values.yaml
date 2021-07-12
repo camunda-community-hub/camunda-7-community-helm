@@ -25,6 +25,7 @@ database:
     credentialsSecertName: ""
     driver: ""
     url: ""
+    validateOnBorrow: true
 
 service:
   type: ClusterIP
@@ -69,7 +70,8 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  fsGroup: 1000
   # capabilities:
   #   drop:
   #   - ALL
