@@ -14,9 +14,9 @@ $ helm repo update
 
 * [Camunda BPM Platform](./charts/camunda-bpm-platform)
 
-## Project state
+## Project status
 
-Please note, this project still in **alpha** phase.
+Please note, this project still in under development, and could be there breaking changes but it will follow the SemVer convention.
 
 ## Contributing
 We value all feedback and contributions. If you find any issues or want to contribute, please feel free to open an issue or file a PR. 
