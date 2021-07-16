@@ -16,6 +16,51 @@ $ helm install demo camunda/camunda-bpm-platform
 * Camunda BPM Platform repo: https://github.com/camunda/camunda-bpm-platform
 * Camunda BPM Platform Docker image: https://github.com/camunda/docker-camunda-bpm-platform
 
+## Example
+
+Using this custom values file the chart will deploy 3 instances of
+[Camunda Platform Run](https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/)
+with `REST API` only enabled (that means no `Webapps` nor `Swagger UI` will be enabled).
+
+Also it will use PostgreSQL
+as an external database (it assumes that the database `process-engine` is already created and the secret
+`camunda-bpm-platform-postgresql-credentials` has the mandatory data `DB_USERNAME` and `DB_PASSWORD`).
+
+Finally, the Prometheus metrics of the Camunda Platform are exposed over the metrics service with port `9404`.
+
+```yaml
+# Custom values.yaml
+image:
+  name: camunda/camunda-bpm-platform
+  tag: run-latest
+  command: ['./camunda.sh']
+  args: ['--rest']
+
+general:
+  replicaCount: 3
+
+database:
+  driver: org.postgresql.Driver
+  url: jdbc:postgresql://camunda-bpm-platform-postgresql:5432/process-engine
+  credentialsSecretName: camunda-bpm-platform-postgresql-credentials
+
+service:
+  type: ClusterIP
+  port: 8080
+  portName: http
+
+metrics:
+  enabled: true
+  service:
+    type: ClusterIP
+    port: 9404
+    portName: metrics
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/path: "/"
+      prometheus.io/port: "9404"
+```
+
 ## Configuration
 
 ### General
@@ -61,9 +106,9 @@ First, assuming that you have a PostgreSQL system up and running with service an
 create a secret has database credentials which will be used later by Camunda BPM Platform deployment:
 
 ```sh
-$ kubectl create secret generic                 \
-    camunda-bpm-platform-postgresql-credentials \
-    --from-literal=DB_USERNAME=foo              \
+$ kubectl create secret generic         \
+    camunda-bpm-platform-db-credentials \
+    --from-literal=DB_USERNAME=foo      \
     --from-literal=DB_PASSWORD=bar
 ```
 
