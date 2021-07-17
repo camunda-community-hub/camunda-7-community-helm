@@ -16,9 +16,32 @@ keywords:
 icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
 home: https://camunda.com
 sources:
-  - https://github.com/camunda/camunda-bpm-platform-helm
+  - https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
   - https://github.com/camunda/docker-camunda-bpm-platform
   - https://github.com/camunda/camunda-bpm-platform
 maintainers:
   - name: aabouzaid
-    url: https://tech.aabouzaid.com/
+    url: https://tech.aabouzaid.com
+annotations:
+  artifacthub.io/links: |
+    - name: Camunda BPM Platform Chart
+      url: https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+    - name: Camunda BPM Platform Docker
+      url: https://github.com/camunda/docker-camunda-bpm-platform
+    - name: Camunda BPM Platform
+      url: https://github.com/camunda/camunda-bpm-platform 
+  artifacthub.io/changes: |
+    - kind: added
+      description: "Add option to customize readiness/liveness probes"
+    - kind: added
+      description: "Add option to customize image command and args"
+    - kind: added
+      description: "Set fsGroup defult value"
+    - kind: added
+      description: "Add an example of custom values.yaml"
+    - kind: changed
+      description: "Refactor - Database access has been unified, and H2 anti-pattern has been fixed and now all databases are configured the same way. This will break the previous version of the chart, and the 'database' values should be updated to the new syntax"
+    - kind: changed
+      description: "The 'latest' tag is used as version for camunda-bpm-platform Docker image"
+    - kind: fixed
+      description: "Default host path in ingress has been added"
