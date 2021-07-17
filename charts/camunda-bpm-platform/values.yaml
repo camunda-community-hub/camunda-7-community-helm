@@ -49,7 +49,7 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-# An arbitrary use of livenessProbe could make a lot of service interruption, use it wisely. 
+# An arbitrary use of livenessProbe could make a lot of service interruption, use it wisely.
 livenessProbe:
   enabled: false
   config:
