@@ -117,9 +117,9 @@ First, assuming that you have a PostgreSQL system up and running with service an
 create a secret has database credentials which will be used later by Camunda BPM Platform deployment:
 
 ```sh
-$ kubectl create secret generic         \
-    camunda-bpm-platform-db-credentials \
-    --from-literal=DB_USERNAME=foo      \
+$ kubectl create secret generic                 \
+    camunda-bpm-platform-postgresql-credentials \
+    --from-literal=DB_USERNAME=foo              \
     --from-literal=DB_PASSWORD=bar
 ```
 
