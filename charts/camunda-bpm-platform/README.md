@@ -18,26 +18,28 @@ $ helm install demo camunda/camunda-bpm-platform
 
 ## Example
 
-Using this custom values file the chart will deploy 3 instances of
-[Camunda Platform Run](https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/)
-with `REST API` only enabled (that means no `Webapps` nor `Swagger UI` will be enabled).
-
-Also it will use PostgreSQL
-as an external database (it assumes that the database `process-engine` is already created and the secret
-`camunda-bpm-platform-postgresql-credentials` has the mandatory data `DB_USERNAME` and `DB_PASSWORD`).
-
-Finally, the Prometheus metrics of the Camunda Platform are exposed over the metrics service with port `9404`.
+Using this custom values file the chart will:
+* Use a custom name for deployment.
+* Deploy 3 instances of [Camunda Platform Run](https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/)
+  with `REST API` only enabled (that means no `Webapps` nor `Swagger UI` will be enabled).
+* Use PostgreSQL as an external database (it assumes that the database `process-engine` is already created
+  and the secret `camunda-bpm-platform-postgresql-credentials` has the mandatory data `DB_USERNAME` and `DB_PASSWORD`).
+* Set custom config for `readinessProbe` and checking an endpoint that queries the database
+  so no traffic will be sent to the REST API if the engine pod is not able to access the database.
+* Expose Prometheus metrics of the Camunda Platform over the metrics service with port `9404`.
 
 ```yaml
 # Custom values.yaml
+
+general:
+  fullnameOverride: camunda-bpm-platform-rest
+  replicaCount: 3
+
 image:
   name: camunda/camunda-bpm-platform
   tag: run-latest
   command: ['./camunda.sh']
   args: ['--rest']
-
-general:
-  replicaCount: 3
 
 database:
   driver: org.postgresql.Driver
@@ -48,6 +50,15 @@ service:
   type: ClusterIP
   port: 8080
   portName: http
+
+readinessProbe:
+  enabled: true
+  config:
+    httpGet:
+      path: /engine-rest/incident/count
+      port: http
+    initialDelaySeconds: 120
+    periodSeconds: 60
 
 metrics:
   enabled: true
