@@ -1,4 +1,5 @@
 # Camunda BPM Platform Helm Chart
+[![Camunda BPM Platform](https://img.shields.io/badge/dynamic/yaml?label=Camunda%20BPM%20Platform&prefix=v&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcamunda-community-hub%2Fcamunda-helm%2Fmain%2Fcharts%2Fcamunda-bpm-platform%2FChart.yaml?style=plastic&logo=helm)](https://artifacthub.io/packages/helm/camunda/camunda-bpm-platform)
 
 A Helm chart for Camunda BPM Platform, the open-source BPM platform.
 
