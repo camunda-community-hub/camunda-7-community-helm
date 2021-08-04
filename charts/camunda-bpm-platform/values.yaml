@@ -16,6 +16,10 @@ image:
   command: []
   args: []
 
+# Config camunda by some environment variable  for database, tz
+# See more https://github.com/camunda/docker-camunda-bpm-platform/blob/next/README.md
+extraEnvs: {}
+
 # By default H2 database is used, which is handy for demos and tests,
 # however, H2 is not supported in a clustered scenario.
 # So for real-world workloads, an external database like PostgreSQL should be used.

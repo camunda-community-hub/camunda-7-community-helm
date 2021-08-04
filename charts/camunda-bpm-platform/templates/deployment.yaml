@@ -41,6 +41,9 @@ spec:
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+          {{- if .Values.extraEnvs }}
+            {{- toYaml .Values.extraEnvs | nindent 12 }}
+          {{- end }}
             - name: DEBUG
               value: "{{ .Values.general.debug }}"
             - name: JMX_PROMETHEUS
