@@ -1,0 +1,76 @@
+apiVersion: v1
+entries:
+  camunda-bpm-platform:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Add option to customize readiness/liveness probes"
+        - kind: added
+          description: "Add option to customize image command and args"
+        - kind: added
+          description: "Set fsGroup defult value"
+        - kind: added
+          description: "Add an example of custom values.yaml"
+        - kind: changed
+          description: "Refactor - Database access has been unified, and H2 anti-pattern has been fixed and now all databases are configured the same way. This will break the previous version of the chart, and the 'database' values should be updated to the new syntax"
+        - kind: changed
+          description: "The 'latest' tag is used as version for camunda-bpm-platform Docker image"
+        - kind: fixed
+          description: "Default host path in ingress has been added"
+      artifacthub.io/links: "- name: Camunda BPM Platform Chart\n  url: https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform\n- name: Camunda BPM Platform Docker\n  url: https://github.com/camunda/docker-camunda-bpm-platform\n- name: Camunda BPM Platform\n  url: https://github.com/camunda/camunda-bpm-platform \n"
+    apiVersion: v2
+    appVersion: latest
+    created: "2021-07-17T18:18:44.10494803Z"
+    description: |
+      Helm Chart for Camunda BPM Platform (Engines, Tasklist, Cockpit, etc).
+    digest: b0e927569a9c68bca140ee38d5e866a9f391209d42753b5549c578b90c07136b
+    home: https://camunda.com
+    icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
+    keywords:
+    - bpm
+    - bpmn
+    - camunda-bpm-platform
+    - camunda-engine
+    - dmn
+    - process-engine
+    - workflow
+    maintainers:
+    - name: aabouzaid
+      url: https://tech.aabouzaid.com
+    name: camunda-bpm-platform
+    sources:
+    - https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+    - https://github.com/camunda/docker-camunda-bpm-platform
+    - https://github.com/camunda/camunda-bpm-platform
+    type: application
+    urls:
+    - https://github.com/camunda-community-hub/camunda-helm/releases/download/camunda-bpm-platform-v1.0.0/camunda-bpm-platform-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 7.14.0
+    created: "2020-11-12T19:23:17.566975906Z"
+    description: |
+      Helm Chart for Camunda BPM Platform (Engines, Tasklist, Cockpit, etc).
+    digest: bdf7e64f35a8fdc693d8a329b3e5804aa9ef77c32a4d1c0d64a8e0a30fd38acd
+    home: https://camunda.com
+    icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
+    keywords:
+    - bpm
+    - bpmn
+    - camunda-bpm-platform
+    - camunda-engine
+    - dmn
+    - process-engine
+    - workflow
+    maintainers:
+    - name: Ahmed AbouZaid
+    name: camunda-bpm-platform
+    sources:
+    - https://github.com/camunda/camunda-bpm-platform-helm
+    - https://github.com/camunda/docker-camunda-bpm-platform
+    - https://github.com/camunda/camunda-bpm-platform
+    type: application
+    urls:
+    - https://github.com/camunda/camunda-helm/releases/download/camunda-bpm-platform-0.1.0/camunda-bpm-platform-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-11-12T19:23:17.326491309Z"
