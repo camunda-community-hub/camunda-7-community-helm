@@ -59,6 +59,9 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.database.credentialsSecretName | default $fullName }}
                   key: DB_PASSWORD
+          {{- if .Values.extraEnvs }}
+            {{- toYaml .Values.extraEnvs | nindent 12 }}
+          {{- end }}
           ports:
             - name: {{ .Values.service.portName }}
               containerPort: {{ .Values.service.port }}

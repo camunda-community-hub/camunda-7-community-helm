@@ -42,6 +42,10 @@ image:
   command: ['./camunda.sh']
   args: ['--rest']
 
+extraEnvs:
+- name: DB_VALIDATE_ON_BORROW
+  value: "false"
+
 database:
   driver: org.postgresql.Driver
   url: jdbc:postgresql://camunda-bpm-platform-postgresql:5432/process-engine
@@ -85,6 +89,17 @@ general:
 ```
 **Please note**, Camunda BPM Platform cluster mode is not supported with the default database H2,
 and an external database should be used if you want to increase the number of the replicas.
+
+#### Extra environment variables
+
+The deployment could be customized by providing extra environment variables according to the project
+[Docker image](https://github.com/camunda/docker-camunda-bpm-platform).
+
+```
+extraEnvs:
+- name: DB_VALIDATE_ON_BORROW
+  value: "false"
+```
 
 #### Debugging
 Enable debugging in the Camunda BPM Platform container by setting:
