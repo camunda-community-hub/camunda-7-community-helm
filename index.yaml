@@ -4,6 +4,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Add option to customize deployment using extra env vars"
+      artifacthub.io/links: |
+        - name: Camunda BPM Platform Chart
+          url: https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+        - name: Camunda BPM Platform Docker
+          url: https://github.com/camunda/docker-camunda-bpm-platform
+        - name: Camunda BPM Platform
+          url: https://github.com/camunda/camunda-bpm-platform
+    apiVersion: v2
+    appVersion: latest
+    created: "2021-09-22T10:53:18.647949668Z"
+    description: |
+      Helm Chart for Camunda BPM Platform (Engines, Tasklist, Cockpit, etc).
+    digest: 1c829639192e3bda691c920a7d1aab77dd74ffe4c5df4f9006a625429716783c
+    home: https://camunda.com
+    icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
+    keywords:
+    - bpm
+    - bpmn
+    - camunda-bpm-platform
+    - camunda-engine
+    - dmn
+    - process-engine
+    - workflow
+    maintainers:
+    - name: aabouzaid
+      url: https://tech.aabouzaid.com
+    name: camunda-bpm-platform
+    sources:
+    - https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+    - https://github.com/camunda/docker-camunda-bpm-platform
+    - https://github.com/camunda/camunda-bpm-platform
+    type: application
+    urls:
+    - https://github.com/camunda-community-hub/camunda-helm/releases/download/camunda-bpm-platform-v1.1.0/camunda-bpm-platform-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Add option to customize readiness/liveness probes"
         - kind: added
           description: "Add option to customize image command and args"
