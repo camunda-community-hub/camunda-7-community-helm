@@ -3,7 +3,7 @@ name: camunda-bpm-platform
 description: |
   Helm Chart for Camunda BPM Platform (Engines, Tasklist, Cockpit, etc).
 type: application
-version: 1.0.0
+version: 1.1.0
 appVersion: latest
 keywords:
   - bpm
@@ -32,16 +32,4 @@ annotations:
       url: https://github.com/camunda/camunda-bpm-platform
   artifacthub.io/changes: |
     - kind: added
-      description: "Add option to customize readiness/liveness probes"
-    - kind: added
-      description: "Add option to customize image command and args"
-    - kind: added
-      description: "Set fsGroup defult value"
-    - kind: added
-      description: "Add an example of custom values.yaml"
-    - kind: changed
-      description: "Refactor - Database access has been unified, and H2 anti-pattern has been fixed and now all databases are configured the same way. This will break the previous version of the chart, and the 'database' values should be updated to the new syntax"
-    - kind: changed
-      description: "The 'latest' tag is used as version for camunda-bpm-platform Docker image"
-    - kind: fixed
-      description: "Default host path in ingress has been added"
+      description: "Add option to customize deployment using extra env vars"
