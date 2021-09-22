@@ -1,0 +1,3 @@
+extraEnvs:
+- name: DB_VALIDATE_ON_BORROW
+  value: "false"
