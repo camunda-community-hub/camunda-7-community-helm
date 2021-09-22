@@ -29,7 +29,7 @@ annotations:
     - name: Camunda BPM Platform Docker
       url: https://github.com/camunda/docker-camunda-bpm-platform
     - name: Camunda BPM Platform
-      url: https://github.com/camunda/camunda-bpm-platform 
+      url: https://github.com/camunda/camunda-bpm-platform
   artifacthub.io/changes: |
     - kind: added
       description: "Add option to customize readiness/liveness probes"
