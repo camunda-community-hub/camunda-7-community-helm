@@ -1,0 +1,29 @@
+style: github
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  repository_url: https://github.com/camunda-community-hub/camunda-helm
+options:
+  commits:
+    filters:
+      Type:
+        - Added
+        - Changed
+        - Deprecated
+        - Removed
+        - Fixed
+        - Security
+  commit_groups:
+    # title_maps:
+    #   feat: Features
+    #   fix: Bug Fixes
+    #   perf: Performance Improvements
+    #   refactor: Code Refactoring
+  header:
+    pattern: "^((\\w+)\\s.*)$"
+    pattern_maps:
+      - Subject
+      - Type
+  notes:
+    keywords:
+      - BREAKING CHANGE
