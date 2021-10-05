@@ -8,7 +8,53 @@ env:
   HELM_VERSION: 3.4.0
 
 jobs:
+  update-charts-changelog:
+    runs-on: ubuntu-latest
+    container: quay.io/git-chglog/git-chglog:0.15.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Bash is needed by "tj-actions/changed-files" Github action.
+      - name: Install dependencies
+        run: |
+          apk add bash
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Get list of changed charts
+        id: list-changed-charts
+        uses: tj-actions/changed-files@v1.1.3
+        with:
+          files: charts/*/Chart.yaml
+
+      - name: Update charts changelog
+        if: steps.list-changed-charts.outputs.any_changed == 'true'
+        run: |
+          set -x
+          apk add git grep
+
+          for chart_file in ${{ steps.list-changed-charts.outputs.all_modified_files }}; do
+              chart_name=$(grep -Po "(?<=^name: ).+" ${chart_file})
+              chart_path="charts/${chart_name}"
+
+              git-chglog \
+                  --path ${chart_path} \
+                  --tag-filter-pattern ${chart_name} \
+                  --output ${chart_path}/CHANGELOG.md
+
+              git add ${chart_path}/CHANGELOG.md
+              git commit -m "Update changelog for chart ${chart_name}"
+              git push
+          done
+
   release:
+    needs: update-charts-changelog
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,3 +78,43 @@ jobs:
           config: .github/cr.yaml
         env:
           CR_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+
+  # A workaround till helm/chart-releaser supports release notes.
+  # https://github.com/helm/chart-releaser/issues/118
+  # https://github.com/helm/chart-releaser/pull/137
+  update-charts-release-notes:
+    needs: release
+    runs-on: ubuntu-latest
+    container: quay.io/git-chglog/git-chglog:0.15.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Publish charts release notes
+        run: |
+          set -x
+          apk add git curl jq grep
+
+          repo_api_base="https://api.github.com/repos/${GITHUB_REPOSITORY}"
+          released_charts="${{needs.release.outputs.released_charts}}"
+
+          echo "released_charts: ${released_charts}"
+
+          for chart_tag in ${released_charts}; do
+              chart_version=$(echo ${chart_tag} | grep -oP '\d+\.\d+\.\d+')
+              chart_name=${chart_tag/-$chart_version/}
+
+              chart_tag_changelog=$(git-chglog --tag-filter-pattern ${chart_name} \
+                  --path charts/${chart_name} ${chart_tag})
+
+              chart_release_notes_json=$(jq -n --arg body "$chart_tag_changelog" '{body: $body}')
+
+              chart_latest_release_id=$(curl --silent -H "Accept: application/vnd.github.v3+json" \
+                  ${repo_api_base}/releases/tags/${chart_tag} | jq '.id')
+
+              curl -X PATCH -H "Accept: application/vnd.github.v3+json" \
+                  -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+                  ${repo_api_base}/releases/${chart_latest_release_id} -d "${chart_release_notes_json}"
+          done
