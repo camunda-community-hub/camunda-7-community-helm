@@ -32,4 +32,6 @@ annotations:
       url: https://github.com/camunda/camunda-bpm-platform
   # This will be generated automatically by the release workflow.
   # https://github.com/camunda-community-hub/camunda-helm/blob/main/.github/workflows/release.yaml
-  artifacthub.io/changes: "- kind: added\n  description: \"Added option to customize database credentials secret keys\"\n"
+  artifacthub.io/changes: |
+    - kind: added
+      description: "Added an option to customize database credentials secret keys"
