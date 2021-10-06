@@ -17,7 +17,6 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 <a name="camunda-bpm-platform-0.1.0"></a>
 ## camunda-bpm-platform-0.1.0 - 2020-11-12
 
-### Tags links
 [camunda-bpm-platform-1.2.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.1.0...camunda-bpm-platform-1.2.0
 [camunda-bpm-platform-1.1.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-v1.1.0...camunda-bpm-platform-1.1.0
 [camunda-bpm-platform-v1.1.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-v1.0.0...camunda-bpm-platform-v1.1.0
