@@ -1,19 +1,4 @@
-Is file is generated automatically by [git-chglog](https://github.com/git-chglog/git-chglog) and it follows [Keep a Changelog](https://keepachangelog.com) format.
-
-{{ if .Versions -}}
-<a name="unreleased"></a>
-## [Unreleased]
-
-{{ if .Unreleased.CommitGroups -}}
-{{ range .Unreleased.CommitGroups -}}
-### {{ .Title }}
-{{ range .Commits -}}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}
-{{ end }}
-{{ end -}}
-{{ end -}}
-{{ end -}}
-
+The changelog is automatically generated using [git-chglog](https://github.com/git-chglog/git-chglog) and it follows [Keep a Changelog](https://keepachangelog.com) format.
 {{ range .Versions }}
 <a name="{{ .Tag.Name }}"></a>
 ## {{ if .Tag.Previous }}[{{ .Tag.Name }}]{{ else }}{{ .Tag.Name }}{{ end }} - {{ datetime "2006-01-02" .Tag.Date }}
@@ -21,10 +6,10 @@ Is file is generated automatically by [git-chglog](https://github.com/git-chglog
 ### {{ .Title }}
 {{ range .Commits -}}
 - {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}
-{{ end }}
+{{ end -}}
 {{ end -}}
 
-{{- if .MergeCommits -}}
+{{- if .MergeCommits }}
 ### Pull Requests
 {{ range .MergeCommits -}}
 - {{ .Header }}
@@ -41,8 +26,8 @@ Is file is generated automatically by [git-chglog](https://github.com/git-chglog
 {{ end -}}
 {{ end -}}
 
-{{- if .Versions }}
-[Unreleased]: {{ .Info.RepositoryURL }}/compare/{{ $latest := index .Versions 0 }}{{ $latest.Tag.Name }}...HEAD
+{{ if .Versions }}
+### Tags links
 {{ range .Versions -}}
 {{ if .Tag.Previous -}}
 [{{ .Tag.Name }}]: {{ $.Info.RepositoryURL }}/compare/{{ .Tag.Previous.Name }}...{{ .Tag.Name }}
