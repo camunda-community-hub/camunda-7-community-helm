@@ -2,7 +2,7 @@ name: Lint and Test Charts
 
 on:
   push:
-    branches: [main, 'release-v*']
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -79,20 +79,3 @@ jobs:
         with:
           command: install
           config: .github/config/chart-testing.yaml
-
-  release-chart:
-    name: Trigger release workflow
-    runs-on: ubuntu-latest
-    needs:
-      - lint-chart
-      - test-install-chart
-    # Run release workflow for release branches only
-    if: startsWith(github.ref, 'refs/heads/release-v')
-    steps:
-      - name: Invoke Release Chart workflow
-        uses: benc-uk/workflow-dispatch@v1.1
-        with:
-          workflow: Release Charts
-          # Please note, the default secrets "GITHUB_TOKEN" cannot be used here.
-          # Github doesn't allow it to run other workflows. Thus; a PAT should be created and used.
-          token: '${{ secrets.WORKFLOWS_RUNNER }}'

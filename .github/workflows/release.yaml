@@ -1,6 +1,8 @@
 name: Release Charts
 
 on:
+  push:
+    branches: ['release-v*']
   # Allow to run the workflow from GitHub UI and other workflows.
   workflow_dispatch:
 
@@ -106,6 +108,15 @@ jobs:
         env:
           CR_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
+      - name: Get Released Charts
+        id: get-released-charts
+        run: |
+          released_charts=$(find .cr-release-packages -name "*.tgz" -printf '%P ' | sed 's/\.tgz//g')
+          echo "released_charts: ${released_charts}"
+          echo "::set-output name=released_charts::${released_charts}"
+    outputs:
+      released_charts: ${{ steps.get-released-charts.outputs.released_charts }}
+
   # A workaround till helm/chart-releaser supports release notes.
   # https://github.com/helm/chart-releaser/issues/118
   # https://github.com/helm/chart-releaser/pull/137
@@ -125,7 +136,7 @@ jobs:
           apk add git curl jq grep
 
           repo_api_base="https://api.github.com/repos/${GITHUB_REPOSITORY}"
-          released_charts="${{needs.release.outputs.released_charts}}"
+          released_charts="${{ needs.release.outputs.released_charts }}"
 
           echo "released_charts: ${released_charts}"
 
