@@ -37,18 +37,42 @@ jobs:
         if: steps.list-changed-charts.outputs.any_changed == 'true'
         run: |
           set -x
-          apk add git grep
+          apk add git grep yq
 
           for chart_file in ${{ steps.list-changed-charts.outputs.all_modified_files }}; do
               chart_name=$(grep -Po "(?<=^name: ).+" ${chart_file})
               chart_path="charts/${chart_name}"
 
+              #
+              # Chart CHANGELOG.md file.
               git-chglog \
                   --path ${chart_path} \
                   --tag-filter-pattern ${chart_name} \
                   --output ${chart_path}/CHANGELOG.md
 
-              git add ${chart_path}/CHANGELOG.md
+              #
+              # Chart ArtifactHub annotation.
+              git-chglog --tag-filter-pattern ${chart_name} \
+                  --path ${chart_path} ${chart_tag} \
+                  --output ${chart_path}/release-notes.md
+
+              # TODO: Rethink about this approach of generating YAML changes for ArtifactHub.
+              commit_types="Added Changed Deprecated Removed Fixed Security"
+              echo "|" > ${chart_path}/changes-for-artifacthub.yaml
+              for commit_type in ${commit_types}; do
+                  sed -rn "/^\#+\s${commit_type}/,/^$/p" ${chart_path}/release-notes.md | egrep "^-" | sed 's/^- //g' |
+                  while read commit_message; do
+                      echo "  - kind: ${commit_type,,}"
+                      echo "    description: \"${commit_message}\""
+                  done >> ${chart_path}/changes-for-artifacthub.yaml
+              done
+
+              # Merge changes back to the chart file.
+              yq eval-all \
+                  'select(fileIndex==0).annotations."artifacthub.io/changes" = select(fileIndex==1) | select(fileIndex==0)' \
+                  ${chart_path}/Chart.yaml ${chart_path}/changes-for-artifacthub.yaml > ${chart_path}/Chart.yaml
+
+              git add ${chart_path}/CHANGELOG.md ${chart_path}/Chart.yaml
               git commit -m "Update changelog for chart ${chart_name}"
               git push
           done

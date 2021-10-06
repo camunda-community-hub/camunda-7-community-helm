@@ -30,6 +30,7 @@ annotations:
       url: https://github.com/camunda/docker-camunda-bpm-platform
     - name: Camunda BPM Platform
       url: https://github.com/camunda/camunda-bpm-platform
+  # This is will be generated automatically by the release workflow.
   artifacthub.io/changes: |
     - kind: added
       description: "Add option to customize deployment using extra env vars"
