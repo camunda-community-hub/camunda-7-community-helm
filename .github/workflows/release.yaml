@@ -2,7 +2,7 @@ name: Release Charts
 
 on:
   push:
-    branches: ['release-v*']
+    branches: ['release-*']
   # Allow to run the workflow from GitHub UI and other workflows.
   workflow_dispatch:
 
@@ -37,37 +37,47 @@ jobs:
 
       - name: Update charts changelog
         if: steps.list-changed-charts.outputs.any_changed == 'true'
+        shell: bash
         run: |
-          #!/bin/bash
           set -x
           apk add git grep yq
 
           for chart_file in ${{ steps.list-changed-charts.outputs.all_modified_files }}; do
               chart_name=$(grep -Po "(?<=^name: ).+" ${chart_file})
+              chart_version=$(grep -Po "(?<=^version: ).+" ${chart_file})
+              chart_tag="${chart_name}-${chart_version}"
               chart_path="charts/${chart_name}"
 
               #
               # Chart CHANGELOG.md file.
-              git-chglog \
-                  --path ${chart_path} \
-                  --tag-filter-pattern ${chart_name} \
-                  --output ${chart_path}/CHANGELOG.md
+              git-chglog                                \
+                  --output "${chart_path}/CHANGELOG.md" \
+                  --tag-filter-pattern "${chart_name}"  \
+                  --next-tag "${chart_tag}"             \
+                  --path "${chart_path}"                \
 
               #
               # Chart ArtifactHub annotation.
-              git-chglog --tag-filter-pattern ${chart_name} \
-                  --path ${chart_path} ${chart_tag} \
-                  --output ${chart_path}/release-notes.md
+              git-chglog                                    \
+                  --output "${chart_path}/release-notes.md" \
+                  --tag-filter-pattern "${chart_name}"      \
+                  --next-tag "${chart_tag}"                 \
+                  --path "${chart_path}" "${chart_tag}"
 
-              # TODO: Rethink about this approach of generating YAML changes for ArtifactHub.
+              echo $BASH
+              ps  -ef | grep $$ | grep -v grep
+
+              # TODO: Rethink about this approach of using bash to generate YAML changes for ArtifactHub.
               commit_types="Added Changed Deprecated Removed Fixed Security"
-              echo "|" > ${chart_path}/changes-for-artifacthub.yaml
+              echo '|' > "${chart_path}/changes-for-artifacthub.yaml"
               for commit_type in ${commit_types}; do
-                  sed -rn "/^\#+\s${commit_type}/,/^$/p" ${chart_path}/release-notes.md | egrep "^-" | sed 's/^- //g' |
-                  while read commit_message; do
-                      echo "  - kind: ${commit_type,,}"
-                      echo "    description: \"${commit_message}\""
-                  done >> ${chart_path}/changes-for-artifacthub.yaml
+                  commit_type_section=$(sed -rn "/^\#+\s${commit_type}/,/^$/p" "${chart_path}/release-notes.md")
+                  if [[ -n "${commit_type_section}" ]]; then
+                      echo "${commit_type_section}" | egrep '^-' | sed 's/^- //g' | while read commit_message; do
+                          echo "  - kind: ${commit_type,,}"
+                          echo "    description: \"${commit_message}\""
+                      done >> "${chart_path}/changes-for-artifacthub.yaml"
+                  fi
               done
 
               # Merge changes back to the chart file.
