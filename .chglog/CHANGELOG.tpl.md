@@ -27,7 +27,6 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 {{ end -}}
 
 {{ if .Versions }}
-### Tags links
 {{ range .Versions -}}
 {{ if .Tag.Previous -}}
 [{{ .Tag.Name }}]: {{ $.Info.RepositoryURL }}/compare/{{ .Tag.Previous.Name }}...{{ .Tag.Name }}
