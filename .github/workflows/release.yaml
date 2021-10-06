@@ -36,6 +36,7 @@ jobs:
       - name: Update charts changelog
         if: steps.list-changed-charts.outputs.any_changed == 'true'
         run: |
+          #!/bin/bash
           set -x
           apk add git grep yq
 
