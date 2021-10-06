@@ -32,6 +32,4 @@ annotations:
       url: https://github.com/camunda/camunda-bpm-platform
   # This will be generated automatically by the release workflow.
   # https://github.com/camunda-community-hub/camunda-helm/blob/main/.github/workflows/release.yaml
-  artifacthub.io/changes: |
-    - kind: added
-      description: "Add option to customize deployment using extra env vars"
+  artifacthub.io/changes: ""
