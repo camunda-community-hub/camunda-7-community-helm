@@ -75,12 +75,10 @@ jobs:
 
               mv ${chart_path}/Chart-with-artifacthub-changes.yaml ${chart_path}/Chart.yaml
 
+              # Push changes to the main branch and current branch.
               git add ${chart_path}/CHANGELOG.md ${chart_path}/Chart.yaml
               git commit -m "Update changelog for chart ${chart_name}"
-
-              # Push changes to the main branch and current branch.
-              git push origin "${GITHUB_REF##*/}":main
-              git push
+              git push origin "${GITHUB_REF##*/}":main "${GITHUB_REF##*/}"
           done
 
   release:

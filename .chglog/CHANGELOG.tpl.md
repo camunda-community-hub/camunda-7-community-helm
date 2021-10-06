@@ -1,3 +1,6 @@
+Is file is generated automatically by [git-chglog](https://github.com/git-chglog/git-chglog)
+and it follows [Keep a Changelog](https://keepachangelog.com) format.
+
 {{ if .Versions -}}
 <a name="unreleased"></a>
 ## [Unreleased]
