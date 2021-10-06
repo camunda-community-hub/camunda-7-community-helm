@@ -64,9 +64,6 @@ jobs:
                   --next-tag "${chart_tag}"                 \
                   --path "${chart_path}" "${chart_tag}"
 
-              echo $BASH
-              ps  -ef | grep $$ | grep -v grep
-
               # TODO: Rethink about this approach of using bash to generate YAML changes for ArtifactHub.
               commit_types="Added Changed Deprecated Removed Fixed Security"
               echo '|' > "${chart_path}/changes-for-artifacthub.yaml"
@@ -79,6 +76,8 @@ jobs:
                       done >> "${chart_path}/changes-for-artifacthub.yaml"
                   fi
               done
+
+              cat "${chart_path}/changes-for-artifacthub.yaml"
 
               # Merge changes back to the chart file.
               yq eval-all \
