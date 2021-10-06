@@ -53,12 +53,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.database.credentialsSecretName | default $fullName }}
-                  key: DB_USERNAME
+                  key: {{ .Values.database.credentialsSecretKeys.username }}
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.database.credentialsSecretName | default $fullName }}
-                  key: DB_PASSWORD
+                  key: {{ .Values.database.credentialsSecretKeys.password }}
           {{- if .Values.extraEnvs }}
             {{- toYaml .Values.extraEnvs | nindent 12 }}
           {{- end }}

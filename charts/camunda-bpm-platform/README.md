@@ -146,6 +146,10 @@ database:
   driver: org.postgresql.Driver
   url: jdbc:postgresql://camunda-bpm-platform-postgresql:5432/process-engine
   credentialsSecretName: camunda-bpm-platform-postgresql-credentials
+  # The username and password keys could be customized to whatever used in the credentials secret.
+  credentialsSecretKeys:
+    username: DB_USERNAME
+    password: DB_PASSWORD
 ```
 
 **Please note**, this Helm chart doesn't manage any external database, it just uses what's configured.

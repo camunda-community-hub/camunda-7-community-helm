@@ -30,6 +30,9 @@ database:
   driver: org.h2.Driver
   url: jdbc:h2:./camunda-h2-dbs/process-engine
   credentialsSecretName: ""
+  credentialsSecretKeys:
+    username: DB_USERNAME
+    password: DB_PASSWORD
 
 service:
   type: ClusterIP
