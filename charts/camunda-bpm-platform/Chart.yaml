@@ -34,4 +34,4 @@ annotations:
   # https://github.com/camunda-community-hub/camunda-helm/blob/main/.github/workflows/release.yaml
   artifacthub.io/changes: |
     - kind: added
-      description: "Added an option to customize database credentials secret keys"
+      description: "Added option to customize database credentials secret keys"
