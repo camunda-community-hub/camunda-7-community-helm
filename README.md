@@ -1,5 +1,5 @@
 # Camunda Helm
-[![](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700)](https://github.com/camunda-community-hub/community) [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/camunda)](https://artifacthub.io/packages/search?repo=camunda) [![Release Charts](https://github.com/camunda-community-hub/camunda-helm/workflows/Release%20Charts/badge.svg)](https://github.com/camunda-community-hub/camunda-helm/actions)
+[![](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700)](https://github.com/camunda-community-hub/community) [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/camunda)](https://artifacthub.io/packages/search?repo=camunda)
 
 Camunda public Kubernetes Helm repo and charts.
 
