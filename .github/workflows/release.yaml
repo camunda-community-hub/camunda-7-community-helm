@@ -49,7 +49,7 @@ jobs:
               chart_path="charts/${chart_name}"
 
               #
-              # Chart CHANGELOG.md file.
+              # Generate chart CHANGELOG.md file.
               git-chglog                                \
                   --output "${chart_path}/CHANGELOG.md" \
                   --tag-filter-pattern "${chart_name}"  \
@@ -57,14 +57,15 @@ jobs:
                   --path "${chart_path}"                \
 
               #
-              # Chart ArtifactHub annotation.
+              # Generate ArtifactHub annotation and update Chart.yaml with it.
               git-chglog                                    \
                   --output "${chart_path}/release-notes.md" \
                   --tag-filter-pattern "${chart_name}"      \
                   --next-tag "${chart_tag}"                 \
                   --path "${chart_path}" "${chart_tag}"
 
-              # TODO: Rethink about this approach of using bash to generate YAML changes for ArtifactHub.
+              # TODO: Rethink about this approach of using bash to generate YAML changes for ArtifactHub,
+              # and find out if there is a better/cleaner way to make it.
               commit_types="Added Changed Deprecated Removed Fixed Security"
               echo '|' > "${chart_path}/changes-for-artifacthub.yaml"
               for commit_type in ${commit_types}; do
@@ -79,7 +80,7 @@ jobs:
 
               cat "${chart_path}/changes-for-artifacthub.yaml"
 
-              # Merge changes back to the chart file.
+              # Merge changes back to the Chart.yaml file.
               yq eval-all \
                   'select(fileIndex==0).annotations."artifacthub.io/changes" = select(fileIndex==1) | select(fileIndex==0)' \
                   ${chart_path}/Chart.yaml ${chart_path}/changes-for-artifacthub.yaml > \
