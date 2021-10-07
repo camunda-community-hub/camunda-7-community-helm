@@ -1,0 +1,8 @@
+initContainers:
+- name: pre-startup-checks
+  image: busybox:1.28
+  command: ['sh', '-c', 'echo "The initContainers work as expected"']
+
+extraEnvs:
+- name: DB_VALIDATE_ON_BORROW
+  value: "false"

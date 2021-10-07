@@ -95,7 +95,7 @@ and an external database should be used if you want to increase the number of th
 The deployment could be customized by providing extra environment variables according to the project
 [Docker image](https://github.com/camunda/docker-camunda-bpm-platform).
 
-```
+```yaml
 extraEnvs:
 - name: DB_VALIDATE_ON_BORROW
   value: "false"
@@ -106,6 +106,20 @@ Enable debugging in the Camunda BPM Platform container by setting:
 ```yaml
 general:
   debug: true
+```
+
+### Init Containers
+
+For a reason or another, you could need to do some pre-startup actions before the start of the Camunda BPM Platform.
+e.g. you could wait for a specific service to be ready or to post to an external service.
+
+If that's needed, it could be done as the following:
+
+```yaml
+initContainers:
+- name: pre-startup-checks
+  image: busybox:1.28
+  command: ['sh', '-c', 'echo "The initContainers work as expected"']
 ```
 
 ### Image
