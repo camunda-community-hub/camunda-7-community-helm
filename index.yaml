@@ -45,6 +45,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Added option to customize database credentials secret keys"
+      artifacthub.io/links: |
+        - name: Camunda BPM Platform Chart
+          url: https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+        - name: Camunda BPM Platform Docker
+          url: https://github.com/camunda/docker-camunda-bpm-platform
+        - name: Camunda BPM Platform
+          url: https://github.com/camunda/camunda-bpm-platform
+    apiVersion: v2
+    appVersion: latest
+    created: "2021-10-08T15:12:43.941732688Z"
+    description: |
+      Helm Chart for Camunda BPM Platform (Engines, Tasklist, Cockpit, etc).
+    digest: f56d2dcad4bcb76b049c67567782db5010ce5b3e55a635d02adb1ebb35395bc1
+    home: https://camunda.com
+    icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
+    keywords:
+    - bpm
+    - bpmn
+    - camunda-bpm-platform
+    - camunda-engine
+    - dmn
+    - process-engine
+    - workflow
+    maintainers:
+    - name: aabouzaid
+      url: https://tech.aabouzaid.com
+    name: camunda-bpm-platform
+    sources:
+    - https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+    - https://github.com/camunda/docker-camunda-bpm-platform
+    - https://github.com/camunda/camunda-bpm-platform
+    type: application
+    urls:
+    - https://github.com/camunda-community-hub/camunda-helm/releases/download/camunda-bpm-platform-1.2.0/camunda-bpm-platform-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Add option to customize deployment using extra env vars"
       artifacthub.io/links: |
         - name: Camunda BPM Platform Chart
