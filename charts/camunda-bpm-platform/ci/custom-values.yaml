@@ -8,7 +8,7 @@ extraEnvs:
   value: "false"
 
 startupProbe:
-  enabled: false
+  enabled: true
   config:
     httpGet:
       path: /camunda/

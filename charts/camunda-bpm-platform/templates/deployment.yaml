@@ -76,7 +76,7 @@ spec:
               protocol: TCP
             {{- end }}
           {{ if .Values.startupProbe.enabled -}}
-          readinessProbe:
+          startupProbe:
             {{- toYaml .Values.startupProbe.config | nindent 12 }}
           {{- end }}
           {{ if .Values.readinessProbe.enabled -}}
