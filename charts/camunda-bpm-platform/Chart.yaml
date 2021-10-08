@@ -34,4 +34,6 @@ annotations:
   # https://github.com/camunda-community-hub/camunda-helm/blob/main/.github/workflows/release.yaml
   artifacthub.io/changes: |
     - kind: added
-      description: "Added option to customize database credentials secret keys"
+      description: "Added startup probe (disabled by default)"
+    - kind: added
+      description: "Added an option to set deployment initContainers"
