@@ -8,6 +8,9 @@ general:
   nameOverride: ""
   fullnameOverride: ""
 
+# Set deployment initContainers for any pre-startup proposes.
+initContainers: []
+
 image:
   repository: camunda/camunda-bpm-platform
   tag: latest
