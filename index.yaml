@@ -4,6 +4,47 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "Added startup probe (disabled by default)"
+        - kind: added
+          description: "Added an option to set deployment initContainers"
+      artifacthub.io/links: |
+        - name: Camunda BPM Platform Chart
+          url: https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+        - name: Camunda BPM Platform Docker
+          url: https://github.com/camunda/docker-camunda-bpm-platform
+        - name: Camunda BPM Platform
+          url: https://github.com/camunda/camunda-bpm-platform
+    apiVersion: v2
+    appVersion: latest
+    created: "2021-10-08T14:39:51.886291523Z"
+    description: |
+      Helm Chart for Camunda BPM Platform (Engines, Tasklist, Cockpit, etc).
+    digest: 61526019d31b615c35f8bb57e5419486f73ca2d5516a8524d992a1095a3dafc0
+    home: https://camunda.com
+    icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
+    keywords:
+    - bpm
+    - bpmn
+    - camunda-bpm-platform
+    - camunda-engine
+    - dmn
+    - process-engine
+    - workflow
+    maintainers:
+    - name: aabouzaid
+      url: https://tech.aabouzaid.com
+    name: camunda-bpm-platform
+    sources:
+    - https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+    - https://github.com/camunda/docker-camunda-bpm-platform
+    - https://github.com/camunda/camunda-bpm-platform
+    type: application
+    urls:
+    - https://github.com/camunda-community-hub/camunda-helm/releases/download/camunda-bpm-platform-1.3.0/camunda-bpm-platform-1.3.0.tgz
+    version: 1.3.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "Add option to customize deployment using extra env vars"
       artifacthub.io/links: |
         - name: Camunda BPM Platform Chart
