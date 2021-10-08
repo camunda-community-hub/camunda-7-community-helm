@@ -103,6 +103,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Workaround because checkout action doesn't pull latest changes.
+      # https://github.com/actions/checkout/issues/439
+      - name: Update local checkout
+        run: git pull --no-rebase
+
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
