@@ -62,8 +62,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-# An arbitrary use of livenessProbe could make a lot of service interruption, use it wisely.
-livenessProbe:
+# The StartupProbe works with Kubernetes >= 1.6
+startupProbe:
   enabled: false
   config:
     httpGet:
@@ -74,6 +74,16 @@ livenessProbe:
 
 readinessProbe:
   enabled: true
+  config:
+    httpGet:
+      path: /camunda/
+      port: http
+    initialDelaySeconds: 120
+    periodSeconds: 60
+
+# An arbitrary use of livenessProbe could make a lot of service interruption, use it wisely.
+livenessProbe:
+  enabled: false
   config:
     httpGet:
       path: /camunda/

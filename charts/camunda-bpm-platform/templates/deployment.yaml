@@ -75,13 +75,17 @@ spec:
               containerPort: {{ .Values.metrics.service.port }}
               protocol: TCP
             {{- end }}
-          {{ if .Values.livenessProbe.enabled -}}
-          livenessProbe:
-            {{- toYaml .Values.livenessProbe.config | nindent 12 }}
+          {{ if .Values.startupProbe.enabled -}}
+          startupProbe:
+            {{- toYaml .Values.startupProbe.config | nindent 12 }}
           {{- end }}
           {{ if .Values.readinessProbe.enabled -}}
           readinessProbe:
             {{- toYaml .Values.readinessProbe.config | nindent 12 }}
+          {{- end }}
+          {{ if .Values.livenessProbe.enabled -}}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe.config | nindent 12 }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
