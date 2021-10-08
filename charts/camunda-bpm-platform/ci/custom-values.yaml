@@ -6,3 +6,12 @@ initContainers:
 extraEnvs:
 - name: DB_VALIDATE_ON_BORROW
   value: "false"
+
+startupProbe:
+  enabled: false
+  config:
+    httpGet:
+      path: /camunda/
+      port: http
+    initialDelaySeconds: 120
+    periodSeconds: 60
