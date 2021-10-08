@@ -90,7 +90,7 @@ jobs:
 
               # Push changes to the main branch and current branch.
               git add ${chart_path}/CHANGELOG.md ${chart_path}/Chart.yaml
-              git commit -m "Update changelog for chart ${chart_name}"
+              git commit -m "Update changelog for chart ${chart_name} ${chart_version}"
               git push origin "${GITHUB_REF##*/}":main "${GITHUB_REF##*/}"
           done
 
