@@ -128,6 +128,15 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+extraVolumeMounts: 
+  # - name: EXAMPLE_NAME
+  #   mountPath: /foo/bar
+
+extraVolumes: 
+  # - name: EXAMPLE_NAME
+  #   persistentVolumeClaim:
+  #     claimName: CLAIM_NAME
+
 autoscaling:
   enabled: false
   minReplicas: 1

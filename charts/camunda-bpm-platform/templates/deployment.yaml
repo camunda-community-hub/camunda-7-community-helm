@@ -93,12 +93,28 @@ spec:
           volumeMounts:
           - name: {{ $fullName }}-database-h2
             mountPath: /camunda/camunda-h2-dbs
+          {{- with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{ else }}
+          {{- with .Values.extraVolumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 10 }}
+          {{- end }}
           {{- end }}
       {{ if eq (include "camunda-bpm-platform.h2DatabaseIsUsed" .) "true" -}}
       volumes:
         - name: {{ $fullName }}-database-h2
           persistentVolumeClaim:
             claimName: {{ $fullName }}-database-h2
+      {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{ else }}
+      {{- with .Values.extraVolumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
