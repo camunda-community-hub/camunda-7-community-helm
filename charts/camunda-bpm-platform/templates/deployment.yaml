@@ -64,7 +64,9 @@ spec:
                   name: {{ .Values.database.credentialsSecretName | default $fullName }}
                   key: {{ .Values.database.credentialsSecretKeys.password }}
           {{- if .Values.extraEnvs }}
-            {{- toYaml .Values.extraEnvs | nindent 12 }}
+          {{- with tpl (toYaml .Values.extraEnvs) . }}
+            {{ . | nindent 12 }}
+          {{- end }}
           {{- end }}
           ports:
             - name: {{ .Values.service.portName }}

@@ -93,12 +93,14 @@ and an external database should be used if you want to increase the number of th
 #### Extra environment variables
 
 The deployment could be customized by providing extra environment variables according to the project
-[Docker image](https://github.com/camunda/docker-camunda-bpm-platform).
+[Docker image](https://github.com/camunda/docker-camunda-bpm-platform). The extra environment variables will be templated using the ['tpl' Function](https://helm.sh/docs/howto/charts_tips_and_tricks/). This allows camunda to get dynamic environment variables like service-Endpoints from a parent Helm-Chart.
 
 ```yaml
 extraEnvs:
 - name: DB_VALIDATE_ON_BORROW
   value: "false"
+- name: base_jee.client.soap.baseURL.processintegration
+  value: http://{{ .Release.Name }}-service-name:8080/path
 ```
 
 #### Debugging
