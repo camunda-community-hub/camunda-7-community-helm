@@ -93,12 +93,14 @@ and an external database should be used if you want to increase the number of th
 #### Extra environment variables
 
 The deployment could be customized by providing extra environment variables according to the project
-[Docker image](https://github.com/camunda/docker-camunda-bpm-platform).
+[Docker image](https://github.com/camunda/docker-camunda-bpm-platform). The extra environment variables will be templated using the ['tpl' function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-tpl-function). This is useful to pass a template string as a value to a chart or render external configuration files.
 
 ```yaml
 extraEnvs:
 - name: DB_VALIDATE_ON_BORROW
   value: "false"
+- name: SERVICE_PORT
+  value: {{ .Values.service.port }}
 ```
 
 #### Debugging
