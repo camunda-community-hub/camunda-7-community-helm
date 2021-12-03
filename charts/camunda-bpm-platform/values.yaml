@@ -128,11 +128,11 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-extraVolumeMounts: 
+extraVolumeMounts: []
   # - name: EXAMPLE_NAME
   #   mountPath: /foo/bar
 
-extraVolumes: 
+extraVolumes: []
   # - name: EXAMPLE_NAME
   #   persistentVolumeClaim:
   #     claimName: CLAIM_NAME
