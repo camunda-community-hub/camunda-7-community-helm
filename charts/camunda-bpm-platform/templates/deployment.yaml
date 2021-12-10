@@ -41,7 +41,8 @@ spec:
           command: {{ .Values.image.command }}
           {{- end }}
           {{- if .Values.image.args }}
-          args: {{ .Values.image.args }}
+          args:
+            {{- toYaml .Values.image.args | nindent 12 }}
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
