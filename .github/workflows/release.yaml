@@ -79,7 +79,7 @@ jobs:
               # and find out if there is a better/cleaner way to make it.
               echo '|' > "${chart_path}/changes-for-artifacthub.yaml"
               for change_type in ${change_types}; do
-                  change_type_section=$(sed -rn "/^\#+\s${change_type}/,/^$/p" "${chart_path}/RELEASE-NOTES.md")
+                  change_type_section=$(sed -rn "/^\#+\s${change_type}/,/^(#|$)/p" "${chart_path}/RELEASE-NOTES.md")
                   if [[ -n "${change_type_section}" ]]; then
                       echo "${change_type_section}" | egrep '^-' | sed 's/^- //g' | while read commit_message; do
                           echo "  - kind: ${change_type,,}"
