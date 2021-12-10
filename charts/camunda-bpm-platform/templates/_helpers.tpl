@@ -72,3 +72,15 @@ true
 false
 {{- end }}
 {{- end }}
+
+{{/*
+Check if the deployment will have volumes
+Note that Helm template always retruns string, so this is not really a bool.
+*/}}
+{{- define "camunda-bpm-platform.withVolumes" -}}
+{{ if or (eq (include "camunda-bpm-platform.h2DatabaseIsUsed" .) "true") (not (empty .Values.extraVolumeMounts)) (not (empty .Values.extraVolumes)) -}}
+true
+{{- else -}}
+false
+{{- end }}
+{{- end }}
