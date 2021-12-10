@@ -129,13 +129,13 @@ resources: {}
   #   memory: 128Mi
 
 extraVolumeMounts: []
-  # - name: EXAMPLE_NAME
-  #   mountPath: /foo/bar
+  # - name: dummy-volume
+  #   mountPath: /dummy/volume
 
 extraVolumes: []
-  # - name: EXAMPLE_NAME
-  #   persistentVolumeClaim:
-  #     claimName: CLAIM_NAME
+  # - name: dummy-volume
+  #   hostPath:
+  #     path: /tmp/dummy-volume
 
 autoscaling:
   enabled: false

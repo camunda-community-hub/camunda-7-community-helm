@@ -7,6 +7,15 @@ extraEnvs:
 - name: DB_VALIDATE_ON_BORROW
   value: "false"
 
+extraVolumeMounts:
+  - name: dummy-volume
+    mountPath: /dummy/volume
+
+extraVolumes:
+  - name: dummy-volume
+    hostPath:
+      path: /tmp/dummy-volume
+
 startupProbe:
   enabled: true
   config:
