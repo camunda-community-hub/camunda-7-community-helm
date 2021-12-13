@@ -105,6 +105,10 @@ ingress:
   #    hosts:
   #      - camunda-bpm-platform.local
 
+# flag to recreate the pods on any install, no matter if anything has changed
+# (useful to recreate the pod if the image tag has not changed)
+recreatePods: false
+
 podAnnotations: {}
 
 podSecurityContext:
