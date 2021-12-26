@@ -41,6 +41,7 @@ service:
   type: ClusterIP
   port: 8080
   portName: http
+  annotations: {}
 
 metrics:
   enabled: false
