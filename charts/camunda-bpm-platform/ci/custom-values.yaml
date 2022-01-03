@@ -1,3 +1,5 @@
+recreatePods: true
+
 initContainers:
 - name: pre-startup-checks
   image: busybox:1.28
