@@ -14,9 +14,9 @@ spec:
       {{- include "camunda-bpm-platform.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- if or (eq .Values.recreatePods true) (.Values.podAnnotations) }}
+      {{- if or (.Values.recreatePods) (.Values.podAnnotations) }}
       annotations:
-        {{- if (eq .Values.recreatePods true) }}
+        {{- if (.Values.recreatePods) }}
         created: {{ now }}
         {{- end }}
         {{- with .Values.podAnnotations }}
