@@ -84,3 +84,18 @@ true
 false
 {{- end }}
 {{- end }}
+
+{{/*
+Return the appropriate apiVersion for ingress according to Kubernetes version.
+*/}}
+{{- define "camunda-bpm-platform.ingress.apiVersion" -}}
+{{- if .Values.ingress.enabled -}}
+{{- if semverCompare "<1.14-0" .Capabilities.KubeVersion.Version -}}
+{{- print "extensions/v1beta1" -}}
+{{- else if semverCompare "<1.19-0" .Capabilities.KubeVersion.Version -}}
+{{- print "networking.k8s.io/v1beta1" -}}
+{{- else -}}
+{{- print "networking.k8s.io/v1" -}}
+{{- end }}
+{{- end }}
+{{- end }}
