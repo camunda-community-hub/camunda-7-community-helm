@@ -5,7 +5,7 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "camunda-bpm-platform.labels" . | nindent 4 }}
-  {{- with .Values.podAnnotations }}
+  {{- with .Values.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
