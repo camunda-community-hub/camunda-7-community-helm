@@ -38,17 +38,25 @@ database:
     password: DB_PASSWORD
 
 service:
-  type: ClusterIP
+  annotations: {}
   port: 8080
   portName: http
-  annotations: {}
+  protocol: TCP
+  type: ClusterIP
+  # NodePort example.
+  # type: NodePort
+  # nodePort: 30080
+  # LoadBalancer example.
+  # type: LoadBalancer
+  # loadBalancerIP: 0.0.0.0
 
 metrics:
   enabled: false
   service:
-    type: ClusterIP
     port: 9404
     portName: metrics
+    protocol: TCP
+    type: ClusterIP
     annotations:
       prometheus.io/scrape: "true"
       prometheus.io/path: "/"

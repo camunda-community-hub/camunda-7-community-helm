@@ -30,3 +30,5 @@ startupProbe:
 service:
   annotations:
     dummy-key: dummy-val
+  type: NodePort
+  nodePort: 30080
