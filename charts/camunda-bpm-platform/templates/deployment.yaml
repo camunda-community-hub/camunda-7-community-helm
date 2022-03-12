@@ -77,11 +77,11 @@ spec:
           ports:
             - name: {{ .Values.service.portName }}
               containerPort: {{ .Values.service.port }}
-              protocol: TCP
+              protocol: {{ .Values.service.protocol }}
             {{- if .Values.metrics.enabled }}
             - name: {{ .Values.metrics.service.portName }}
               containerPort: {{ .Values.metrics.service.port }}
-              protocol: TCP
+              protocol: {{ .Values.metrics.service.protocol }}
             {{- end }}
           {{ if .Values.startupProbe.enabled -}}
           startupProbe:
