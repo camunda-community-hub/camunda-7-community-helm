@@ -1,5 +1,13 @@
 The changelog is automatically generated using [git-chglog](https://github.com/git-chglog/git-chglog) and it follows [Keep a Changelog](https://keepachangelog.com) format.
 
+<a name="camunda-bpm-platform-1.5.0"></a>
+## [camunda-bpm-platform-1.5.0] - 2022-03-13
+### Added
+- Added support for optional deployment annotations ([#38](https://github.com/camunda-community-hub/camunda-helm/issues/38))
+- Added better support for svc NodePort and LoadBalancer
+- Added option to force pod recreation
+- Added service annotations
+
 <a name="camunda-bpm-platform-1.4.0"></a>
 ## [camunda-bpm-platform-1.4.0] - 2021-12-11
 ### Added
@@ -31,6 +39,7 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 <a name="camunda-bpm-platform-0.1.0"></a>
 ## camunda-bpm-platform-0.1.0 - 2020-11-12
 
+[camunda-bpm-platform-1.5.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.4.0...camunda-bpm-platform-1.5.0
 [camunda-bpm-platform-1.4.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.3.0...camunda-bpm-platform-1.4.0
 [camunda-bpm-platform-1.3.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.2.0...camunda-bpm-platform-1.3.0
 [camunda-bpm-platform-1.2.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.1.0...camunda-bpm-platform-1.2.0
