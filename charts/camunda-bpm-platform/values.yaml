@@ -11,6 +11,9 @@ general:
 # Set deployment initContainers for any pre-startup proposes.
 initContainers: []
 
+# Deployment annotations
+annotations: {}
+
 image:
   repository: camunda/camunda-bpm-platform
   tag: latest
