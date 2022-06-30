@@ -50,6 +50,7 @@ database:
   driver: org.postgresql.Driver
   url: jdbc:postgresql://camunda-bpm-platform-postgresql:5432/process-engine
   credentialsSecretName: camunda-bpm-platform-postgresql-credentials
+  credentialsSecretEnabled: true
 
 service:
   type: ClusterIP
@@ -124,6 +125,22 @@ initContainers:
   command: ['sh', '-c', 'echo "The initContainers work as expected"']
 ```
 
+### Extra Containers
+
+For a reason or another, you could need to add sidecars.
+e.g. you could have a fluentd that check your logs or a vault that inject your db secrets.
+
+If that's needed, it could be done as the following:
+
+```yaml
+extraContainers:
+- name: fluentd
+  image: "fluentd"
+  volumeMounts:
+    - mountPath: /my_mounts/cribl-config
+      name: config-storage
+```
+
 ### Image
 
 Camunda BPM Platform open-source Docker image comes in 3 distributions `tomcat`, `wildfly`, and `run`.
@@ -162,6 +179,7 @@ database:
   driver: org.postgresql.Driver
   url: jdbc:postgresql://camunda-bpm-platform-postgresql:5432/process-engine
   credentialsSecretName: camunda-bpm-platform-postgresql-credentials
+  credentialsSecretEnabled: true
   # The username and password keys could be customized to whatever used in the credentials secret.
   credentialsSecretKeys:
     username: DB_USERNAME
