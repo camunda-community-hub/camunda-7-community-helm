@@ -29,18 +29,23 @@ extraEnvs: []
 # - name: DB_VALIDATE_ON_BORROW
 #   value: false
 
+# Extra containers to have sidecars
+extraContainers: []
+
 # By default H2 database is used, which is handy for demos and tests,
 # however, H2 is not supported in a clustered scenario.
 # So for real-world workloads, an external database like PostgreSQL should be used.
 database:
   driver: org.h2.Driver
   url: jdbc:h2:./camunda-h2-dbs/process-engine
+  credentialsSecretEnabled: true
   credentialsSecretName: ""
   credentialsSecretKeys:
     username: DB_USERNAME
     password: DB_PASSWORD
 
 service:
+  enabled: true
   annotations: {}
   port: 8080
   portName: http

@@ -1,5 +1,10 @@
 recreatePods: true
 
+extraContainers:
+- name: sidecar-loop
+  image: busybox:1.28
+  command: ['sh', '-c', 'sleep 1h']
+
 initContainers:
 - name: pre-startup-checks
   image: busybox:1.28
