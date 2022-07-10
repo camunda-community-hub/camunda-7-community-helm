@@ -1,5 +1,10 @@
 The changelog is automatically generated using [git-chglog](https://github.com/git-chglog/git-chglog) and it follows [Keep a Changelog](https://keepachangelog.com) format.
 
+<a name="camunda-bpm-platform-1.6.0"></a>
+## [camunda-bpm-platform-1.6.0] - 2022-07-10
+### Added
+- Added extraContainers and additional customizations ([#47](https://github.com/camunda-community-hub/camunda-helm/issues/47))
+
 <a name="camunda-bpm-platform-1.5.0"></a>
 ## [camunda-bpm-platform-1.5.0] - 2022-03-13
 ### Added
@@ -39,6 +44,7 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 <a name="camunda-bpm-platform-0.1.0"></a>
 ## camunda-bpm-platform-0.1.0 - 2020-11-12
 
+[camunda-bpm-platform-1.6.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.5.0...camunda-bpm-platform-1.6.0
 [camunda-bpm-platform-1.5.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.4.0...camunda-bpm-platform-1.5.0
 [camunda-bpm-platform-1.4.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.3.0...camunda-bpm-platform-1.4.0
 [camunda-bpm-platform-1.3.0]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-1.2.0...camunda-bpm-platform-1.3.0
