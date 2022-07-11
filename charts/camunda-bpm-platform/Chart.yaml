@@ -3,7 +3,7 @@ name: camunda-bpm-platform
 description: |
   Helm Chart for Camunda BPM Platform (Engines, Tasklist, Cockpit, etc).
 type: application
-version: 1.6.0
+version: 7.6.0
 appVersion: latest
 keywords:
   - bpm
@@ -24,11 +24,11 @@ maintainers:
     url: https://tech.aabouzaid.com
 annotations:
   artifacthub.io/links: |
-    - name: Camunda BPM Platform Chart
+    - name: Camunda BPM Platform v7 Helm Chart
       url: https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
-    - name: Camunda BPM Platform Docker
+    - name: Camunda BPM Platform v7 Docker
       url: https://github.com/camunda/docker-camunda-bpm-platform
-    - name: Camunda BPM Platform
+    - name: Camunda BPM Platform v7
       url: https://github.com/camunda/camunda-bpm-platform
   # This will be generated automatically by the release workflow.
   # https://github.com/camunda-community-hub/camunda-helm/blob/main/.github/workflows/release.yaml
