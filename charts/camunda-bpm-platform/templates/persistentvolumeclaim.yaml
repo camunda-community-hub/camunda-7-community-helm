@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "camunda-bpm-platform.fullname" . }}-database-h2
+  name: {{ include "camunda-bpm-platform.fullname" . }}-db-h2
   labels:
     {{- include "camunda-bpm-platform.labels" . | nindent 4 }}
 spec:

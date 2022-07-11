@@ -111,7 +111,7 @@ spec:
           {{ if eq (include "camunda-bpm-platform.withVolumes" .) "true" -}}
           volumeMounts:
             {{- if eq (include "camunda-bpm-platform.h2DatabaseIsUsed" .) "true" }}
-            - name: {{ $fullName }}-database-h2
+            - name: {{ $fullName }}-db-h2
               mountPath: /camunda/camunda-h2-dbs
             {{- end }}
             {{- if .Values.extraVolumeMounts }}
@@ -121,9 +121,9 @@ spec:
       {{ if eq (include "camunda-bpm-platform.withVolumes" .) "true" -}}
       volumes:
         {{- if eq (include "camunda-bpm-platform.h2DatabaseIsUsed" .) "true" }}
-        - name: {{ $fullName }}-database-h2
+        - name: {{ $fullName }}-db-h2
           persistentVolumeClaim:
-            claimName: {{ $fullName }}-database-h2
+            claimName: {{ $fullName }}-db-h2
         {{- end -}}
         {{- if .Values.extraVolumes }}
           {{- tpl (toYaml .Values.extraVolumes) . | nindent 8 }}

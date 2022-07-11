@@ -1,14 +1,19 @@
-# Camunda BPM Platform Helm Chart
+# Camunda BPM Platform 7 Helm Chart
 ![Community Extension](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700) [![Lifecycle: Incubating](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-) [![Camunda BPM Platform](https://img.shields.io/badge/dynamic/yaml?label=Camunda%20BPM%20Platform&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcamunda-community-hub%2Fcamunda-helm%2Fmain%2Fcharts%2Fcamunda-bpm-platform%2FChart.yaml?style=plastic&logo=artifacthub&logoColor=white&labelColor=417598&color=2D4857)](https://artifacthub.io/packages/helm/camunda/camunda-bpm-platform)
 
-A Helm chart for Camunda BPM Platform, the open-source BPM platform.
+A Helm chart for Camunda BPM Platform v7, the open-source BPM platform.
+
+> **Note**
+>
+> This chart is a community effort for **Camunda Platform 7**, if you are looking for the brand new Camunda platform
+> then go to the official [**Camunda Platform 8** Helm repo](https://github.com/camunda/camunda-platform-helm).
 
 ## Install
 
 ```sh
 $ helm repo add camunda https://helm.camunda.cloud
 $ helm repo update
-$ helm install demo camunda/camunda-bpm-platform
+$ helm install demo camunda/camunda-bpm-platform-v7
 ```
 
 ## Links
@@ -21,7 +26,7 @@ $ helm install demo camunda/camunda-bpm-platform
 
 Using this custom values file the chart will:
 * Use a custom name for deployment.
-* Deploy 3 instances of [Camunda Platform Run](https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/)
+* Deploy 3 instances of [Camunda Platform v7 Run](https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/)
   with `REST API` only enabled (that means no `Webapps` nor `Swagger UI` will be enabled).
 * Use PostgreSQL as an external database (it assumes that the database `process-engine` is already created
   and the secret `camunda-bpm-platform-postgresql-credentials` has the mandatory data `DB_USERNAME` and `DB_PASSWORD`).
@@ -33,7 +38,7 @@ Using this custom values file the chart will:
 # Custom values.yaml
 
 general:
-  fullnameOverride: camunda-bpm-platform-rest
+  fullnameOverride: camunda-bpm-platform-v7-rest
   replicaCount: 3
 
 image:
@@ -48,8 +53,8 @@ extraEnvs:
 
 database:
   driver: org.postgresql.Driver
-  url: jdbc:postgresql://camunda-bpm-platform-postgresql:5432/process-engine
-  credentialsSecretName: camunda-bpm-platform-postgresql-credentials
+  url: jdbc:postgresql://camunda-bpm-platform-v7-postgresql:5432/process-engine
+  credentialsSecretName: camunda-bpm-platform-v7-postgresql-credentials
   credentialsSecretEnabled: true
 
 service:
@@ -88,7 +93,7 @@ Set the number of replicas:
 general:
   replicaCount: 1
 ```
-**Please note**, Camunda BPM Platform cluster mode is not supported with the default database H2,
+**Please note**, Camunda BPM Platform v7 cluster mode is not supported with the default database H2,
 and an external database should be used if you want to increase the number of the replicas.
 
 #### Extra environment variables
@@ -105,7 +110,7 @@ extraEnvs:
 ```
 
 #### Debugging
-Enable debugging in the Camunda BPM Platform container by setting:
+Enable debugging in the Camunda BPM Platform v7 container by setting:
 ```yaml
 general:
   debug: true
@@ -153,9 +158,9 @@ The image used in the chart is `latest` (which's actually `tomcat-latest`).
 ### Database
 
 One of the [supported databases](https://docs.camunda.org/manual/latest/introduction/supported-environments/#databases)
-could be used as a database for Camunda BPM Platform.
+could be used as a database for Camunda BPM Platform v7.
 
-The H2 database is used by default which works fine if you just want to test Camunda BPM Platform.
+The H2 database is used by default which works fine if you just want to test Camunda BPM Platform v7.
 But since the database is embedded, only 1 deployment replica could be used.
 
 For real-world workloads, an external database like PostgreSQL should be used.
@@ -163,7 +168,7 @@ The following is an example of using PostgreSQL as an external database.
 
 First, assuming that you have a PostgreSQL system up and running with service and port
 `camunda-bpm-platform-postgresql:5432`, also the database `process-engine` is created and you have its credentials,
-create a secret has database credentials which will be used later by Camunda BPM Platform deployment:
+create a secret has database credentials which will be used later by Camunda BPM Platform v7 deployment:
 
 ```sh
 $ kubectl create secret generic                 \
@@ -177,8 +182,8 @@ Now, set the values to use the external database:
 ```yaml
 database:
   driver: org.postgresql.Driver
-  url: jdbc:postgresql://camunda-bpm-platform-postgresql:5432/process-engine
-  credentialsSecretName: camunda-bpm-platform-postgresql-credentials
+  url: jdbc:postgresql://camunda-bpm-platform-v7-postgresql:5432/process-engine
+  credentialsSecretName: camunda-bpm-platform-v7-postgresql-credentials
   credentialsSecretEnabled: true
   # The username and password keys could be customized to whatever used in the credentials secret.
   credentialsSecretKeys:
@@ -190,7 +195,7 @@ database:
 
 ### Metrics
 
-Enable Prometheus metrics for Camunda BPM Platform by setting the following in the values file:
+Enable Prometheus metrics for Camunda BPM Platform v7 by setting the following in the values file:
 
 ```yaml
 metrics:

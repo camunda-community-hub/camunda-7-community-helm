@@ -3,6 +3,11 @@
 
 Camunda public Kubernetes Helm repo and charts.
 
+> **Note**
+>
+> This repo is a community effort for **Camunda Platform 7**, if you are looking for the brand new Camunda platform
+> then go to the official [**Camunda Platform 8** Helm repo](https://github.com/camunda/camunda-platform-helm).
+
 ## Repository
 
 ```sh
