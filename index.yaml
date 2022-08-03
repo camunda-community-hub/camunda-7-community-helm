@@ -38,8 +38,8 @@ entries:
     - https://github.com/camunda/camunda-bpm-platform
     type: application
     urls:
-    - https://github.com/camunda-community-hub/camunda-helm/releases/download/camunda-bpm-platform-1.6.0/camunda-bpm-platform-1.6.0.tgz
-    version: 1.6.0
+    - https://github.com/camunda-community-hub/camunda-helm/releases/download/camunda-bpm-platform-7.6.0/camunda-bpm-platform-7.6.0.tgz
+    version: 7.6.0
   - annotations:
       artifacthub.io/changes: |
         - kind: added
