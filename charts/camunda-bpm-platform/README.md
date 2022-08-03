@@ -1,7 +1,10 @@
 # Camunda BPM Platform 7 Helm Chart
-![Community Extension](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700) [![Lifecycle: Incubating](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-) [![Camunda BPM Platform](https://img.shields.io/badge/dynamic/yaml?label=Camunda%20BPM%20Platform&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcamunda-community-hub%2Fcamunda-helm%2Fmain%2Fcharts%2Fcamunda-bpm-platform%2FChart.yaml?style=plastic&logo=artifacthub&logoColor=white&labelColor=417598&color=2D4857)](https://artifacthub.io/packages/helm/camunda/camunda-bpm-platform)
+![Community Extension](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700)
+[![Lifecycle:Incubating](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-)
+![Compatible with: Camunda Platform 7](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%207-26d07c)
+[![Camunda BPM Platform](https://img.shields.io/badge/dynamic/yaml?label=Camunda%20BPM%20Platform&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fcamunda-community-hub%2Fcamunda-helm%2Fmain%2Fcharts%2Fcamunda-bpm-platform%2FChart.yaml?style=plastic&logo=artifacthub&logoColor=white&labelColor=417598&color=2D4857)](https://artifacthub.io/packages/helm/camunda-community-hub/camunda-bpm-platform)
 
-A Helm chart for Camunda BPM Platform v7, the open-source BPM platform.
+A Helm chart for Camunda BPM Platform 7, the open-source BPM platform.
 
 > **Note**
 >
@@ -11,7 +14,7 @@ A Helm chart for Camunda BPM Platform v7, the open-source BPM platform.
 ## Install
 
 ```sh
-$ helm repo add camunda https://helm.camunda.cloud
+$ helm repo add camunda https://helm.cch.camunda.cloud
 $ helm repo update
 $ helm install demo camunda/camunda-bpm-platform
 ```
@@ -93,7 +96,7 @@ Set the number of replicas:
 general:
   replicaCount: 1
 ```
-**Please note**, Camunda BPM Platform v7 cluster mode is not supported with the default database H2,
+**Please note**, Camunda BPM Platform 7 cluster mode is not supported with the default database H2,
 and an external database should be used if you want to increase the number of the replicas.
 
 #### Extra environment variables
@@ -110,7 +113,7 @@ extraEnvs:
 ```
 
 #### Debugging
-Enable debugging in the Camunda BPM Platform v7 container by setting:
+Enable debugging in the Camunda BPM Platform 7 container by setting:
 ```yaml
 general:
   debug: true
@@ -158,9 +161,9 @@ The image used in the chart is `latest` (which's actually `tomcat-latest`).
 ### Database
 
 One of the [supported databases](https://docs.camunda.org/manual/latest/introduction/supported-environments/#databases)
-could be used as a database for Camunda BPM Platform v7.
+could be used as a database for Camunda BPM Platform 7.
 
-The H2 database is used by default which works fine if you just want to test Camunda BPM Platform v7.
+The H2 database is used by default which works fine if you just want to test Camunda BPM Platform 7.
 But since the database is embedded, only 1 deployment replica could be used.
 
 For real-world workloads, an external database like PostgreSQL should be used.
@@ -168,7 +171,7 @@ The following is an example of using PostgreSQL as an external database.
 
 First, assuming that you have a PostgreSQL system up and running with service and port
 `camunda-bpm-platform-postgresql:5432`, also the database `process-engine` is created and you have its credentials,
-create a secret has database credentials which will be used later by Camunda BPM Platform v7 deployment:
+create a secret has database credentials which will be used later by Camunda BPM Platform 7 deployment:
 
 ```sh
 $ kubectl create secret generic                 \
@@ -195,7 +198,7 @@ database:
 
 ### Metrics
 
-Enable Prometheus metrics for Camunda BPM Platform v7 by setting the following in the values file:
+Enable Prometheus metrics for Camunda BPM Platform 7 by setting the following in the values file:
 
 ```yaml
 metrics:
