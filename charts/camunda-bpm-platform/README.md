@@ -1,4 +1,5 @@
 # Camunda BPM Platform 7 Helm Chart
+
 ![Community Extension](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700)
 [![Lifecycle:Incubating](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-)
 ![Compatible with: Camunda Platform 7](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%207-26d07c)
@@ -91,6 +92,7 @@ metrics:
 ### General
 
 #### Replicas
+
 Set the number of replicas:
 ```yaml
 general:
@@ -113,6 +115,7 @@ extraEnvs:
 ```
 
 #### Debugging
+
 Enable debugging in the Camunda BPM Platform 7 container by setting:
 ```yaml
 general:
@@ -157,6 +160,13 @@ Each distro has different tags, check the list of
 by Camunda BPM Platform docker project for more details.
 
 The image used in the chart is `latest` (which's actually `tomcat-latest`).
+
+`repository` and `tag` use [`tpl`](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-tpl-function) function, it allows you to do templating:
+
+```yaml
+image:
+  tag: "{{ .Chart.Version }}
+```
 
 ### Database
 
