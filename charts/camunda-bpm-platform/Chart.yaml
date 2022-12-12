@@ -13,6 +13,21 @@ keywords:
   - dmn
   - process-engine
   - workflow
+dependencies:
+  # Camunda Platform charts.
+  - name: optimize
+    # repository: "https://helm.camunda.io"
+    version: 8.1.0
+    condition: "optimize.enabled"
+  # Dependency charts.
+  - name: elasticsearch
+    repository: "https://helm.elastic.co"
+    version: 7.17.1
+    condition: "elasticsearch.enabled"
+  - name: keycloak
+    repository: "https://charts.bitnami.com/bitnami"
+    version: 7.1.6
+    condition: "keycloak.enabled"
 icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
 home: https://camunda.com
 sources:

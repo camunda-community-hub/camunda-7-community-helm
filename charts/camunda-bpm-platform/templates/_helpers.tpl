@@ -2,7 +2,7 @@
 Expand the name of the chart.
 */}}
 {{- define "camunda-bpm-platform.name" -}}
-{{- default .Chart.Name .Values.general.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -14,7 +14,7 @@ If release name contains chart name it will be used as a full name.
 {{- if .Values.general.fullnameOverride }}
 {{- .Values.general.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
-{{- $name := default .Chart.Name .Values.general.nameOverride }}
+{{- $name := default .Chart.Name .Values.nameOverride }}
 {{- if contains $name .Release.Name }}
 {{- .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -34,6 +34,9 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "camunda-bpm-platform.labels" -}}
+{{- if .Values.global.labels -}}
+{{ toYaml .Values.global.labels }}
+{{- end }}
 helm.sh/chart: {{ include "camunda-bpm-platform.chart" . }}
 {{ include "camunda-bpm-platform.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
@@ -43,12 +46,55 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
+Common match labels, which are extended by sub-charts and should be used in matchLabels selectors.
+*/}}
+{{- define "camunda-bpm-platform.matchLabels" -}}
+{{/*
+{{- if .Values.global.labels -}}
+{{ toYaml .Values.global.labels }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/part-of: camunda-platform
+*/}}
+app.kubernetes.io/name: {{ template "camunda-bpm-platform.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{/*
 Selector labels
 */}}
 {{- define "camunda-bpm-platform.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "camunda-bpm-platform.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Set imagePullSecrets according the values of global, subchart, or empty.
+*/}}
+{{- define "camunda-bpm-platform.imagePullSecrets" -}}
+{{- if (.Values.image.pullSecrets) -}}
+{{ .Values.image.pullSecrets | toYaml }}
+{{- else if (.Values.global.image.pullSecrets) -}}
+{{ .Values.global.image.pullSecrets | toYaml }}
+{{- else -}}
+[]
+{{- end -}}
+{{- end -}}
+
+{{/*
+Keycloak service name should be a max of 20 char since the Keycloak Bitnami Chart is using Wildfly, the node identifier in WildFly is limited to 23 characters.
+Furthermore, this allows changing the referenced Keycloak name inside the sub-charts.
+Subcharts can't access values from other sub-charts or the parent, global only. This is the reason why we have a global value to specify the Keycloak full name.
+*/}}
+
+{{- define "camunda-bpm-platform.issuerBackendUrl" -}}
+    {{- $keycloakRealmPath := "/auth/realms/camunda-platform" -}}
+    {{- if .Values.global.identity.keycloak.url -}}
+        {{- include "identity.keycloak.url" . -}}{{- $keycloakRealmPath -}}
+    {{- else -}}
+        http://{{ include "common.names.dependency.fullname" (dict "chartName" "keycloak" "chartValues" . "context" $) | trunc 20 | trimSuffix "-" }}:80{{ $keycloakRealmPath }}
+    {{- end -}}
+{{- end -}}
 
 {{/*
 Create the name of the service account to use
