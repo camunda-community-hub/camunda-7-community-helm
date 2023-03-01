@@ -165,7 +165,7 @@ The image used in the chart is `latest` (which's actually `tomcat-latest`).
 
 ```yaml
 image:
-  tag: "{{ .Chart.Version }}
+  tag: "{{ .Chart.Version }}"
 ```
 
 ### Database
