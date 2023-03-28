@@ -6,6 +6,9 @@ metadata:
     {{- include "camunda-bpm-platform.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
+    {{- with .Values.tests.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   containers:
     - name: curl
