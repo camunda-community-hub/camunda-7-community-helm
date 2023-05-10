@@ -3,6 +3,45 @@ entries:
   camunda-bpm-platform:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "Added support for specifying test annotations ([#56](https://github.com/camunda-community-hub/camunda-helm/issues/56))"
+      artifacthub.io/links: |
+        - name: Camunda BPM Platform 7 Helm chart
+          url: https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+        - name: Camunda BPM Platform 7 Docker
+          url: https://github.com/camunda/docker-camunda-bpm-platform
+        - name: Camunda BPM Platform 7
+          url: https://github.com/camunda/camunda-bpm-platform
+    apiVersion: v2
+    appVersion: 7.x.x
+    created: "2023-05-10T14:11:33.06056589Z"
+    description: 'Community Helm chart for Camunda BPM Platform 7 (Engine, Tasklist,
+      Cockpit, etc). '
+    digest: f1b317b4616bfaa08f5e3bc60284bc2b0721fd0ae9fbce2501dabb5e1fb4317e
+    home: https://camunda.com
+    icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
+    keywords:
+    - bpm
+    - bpmn
+    - camunda-bpm-platform
+    - camunda-engine
+    - dmn
+    - process-engine
+    - workflow
+    maintainers:
+    - name: aabouzaid
+      url: https://tech.aabouzaid.com
+    name: camunda-bpm-platform
+    sources:
+    - https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+    - https://github.com/camunda/docker-camunda-bpm-platform
+    - https://github.com/camunda/camunda-bpm-platform
+    type: application
+    urls:
+    - https://github.com/camunda-community-hub/camunda-7-community-helm/releases/download/camunda-bpm-platform-7.6.2/camunda-bpm-platform-7.6.2.tgz
+    version: 7.6.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "Changed and unified chart name and updated helm repo url"
       artifacthub.io/links: |
@@ -361,4 +400,4 @@ entries:
     urls:
     - https://github.com/camunda/camunda-helm/releases/download/camunda-bpm-platform-0.1.0/camunda-bpm-platform-0.1.0.tgz
     version: 0.1.0
-generated: "2022-08-03T17:03:30.89037956Z"
+generated: "2023-05-10T14:11:33.060614991Z"
