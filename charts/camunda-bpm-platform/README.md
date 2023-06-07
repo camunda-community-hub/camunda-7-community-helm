@@ -22,13 +22,14 @@ $ helm install demo camunda/camunda-bpm-platform
 
 ## Links
 
-* Camunda homepage: https://camunda.com
-* Camunda BPM Platform repo: https://github.com/camunda/camunda-bpm-platform
-* Camunda BPM Platform Docker image: https://github.com/camunda/docker-camunda-bpm-platform
+* Camunda homepage: <https://camunda.com>
+* Camunda BPM Platform repo: <https://github.com/camunda/camunda-bpm-platform>
+* Camunda BPM Platform Docker image: <https://github.com/camunda/docker-camunda-bpm-platform>
 
 ## Example
 
 Using this custom values file the chart will:
+
 * Use a custom name for deployment.
 * Deploy 3 instances of [Camunda Platform v7 Run](https://docs.camunda.org/manual/latest/user-guide/camunda-bpm-run/)
   with `REST API` only enabled (that means no `Webapps` nor `Swagger UI` will be enabled).
@@ -94,10 +95,12 @@ metrics:
 #### Replicas
 
 Set the number of replicas:
+
 ```yaml
 general:
   replicaCount: 1
 ```
+
 **Please note**, Camunda BPM Platform 7 cluster mode is not supported with the default database H2,
 and an external database should be used if you want to increase the number of the replicas.
 
@@ -117,6 +120,7 @@ extraEnvs:
 #### Debugging
 
 Enable debugging in the Camunda BPM Platform 7 container by setting:
+
 ```yaml
 general:
   debug: true

@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  HELM_VERSION: 3.4.0
+  HELM_VERSION: 3.12.0
 
 jobs:
   find-charts-to-release:
@@ -16,13 +16,13 @@ jobs:
       modified-charts-files: ${{ steps.list-changed-charts.outputs.all_modified_files }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Get list of changed charts
         id: list-changed-charts
-        uses: tj-actions/changed-files@v1.1.3
+        uses: tj-actions/changed-files@v36
         with:
           files: charts/*/Chart.yaml
 
@@ -100,7 +100,7 @@ jobs:
           done
 
       - name: Stash generated charts changelog files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: charts-generated-changelog
           path: |
@@ -113,12 +113,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Unstash generated charts changelog files
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: charts-generated-changelog
           path: charts
@@ -129,16 +129,15 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Install Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v3
         with:
           version: "${{ env.HELM_VERSION }}"
 
       - name: Run Chart Releaser
-        uses: helm/chart-releaser-action@v1.2.1
+        uses: helm/chart-releaser-action@v1.5.0
         env:
           CR_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         with:
-          version: v1.3.0
           config: .github/config/chart-releaser.yaml
 
 
@@ -149,12 +148,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Unstash generated charts changelog files
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: charts-generated-changelog
           path: charts
@@ -177,5 +176,5 @@ jobs:
               git commit -m "Update CHANGELOG for chart ${chart_name} ${chart_version}"
           done
 
-          # Push changes to the main branch.          
+          # Push changes to the main branch.
           git push origin "${GITHUB_REF##*/}":main
