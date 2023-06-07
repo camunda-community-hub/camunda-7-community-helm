@@ -1,7 +1,8 @@
 {{- if .Values.ingress.enabled -}}
+{{- $apiVersion := include "camunda-bpm-platform.ingress.apiVersion" . -}}
 {{- $fullName := include "camunda-bpm-platform.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-apiVersion: {{ (include "camunda-bpm-platform.ingress.apiVersion" .) }}
+apiVersion: {{ $apiVersion }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -29,9 +30,18 @@ spec:
         paths:
           {{- range .paths }}
           - path: {{ . }}
+            {{- if eq $apiVersion "networking.k8s.io/v1" }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+            {{ else }}
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
+            {{ end }}
           {{- end }}
     {{- end }}
   {{- end }}
