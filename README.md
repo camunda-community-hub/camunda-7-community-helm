@@ -1,4 +1,5 @@
 # Camunda Community Helm
+
 ![Community Extension](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700)
 [![Lifecycle:Incubating](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-)
 ![Compatible with: Camunda Platform 7](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%207-26d07c)
@@ -35,9 +36,11 @@ The CI/CD are done in GitHub Actions, and main actions are used:
 Please note, this project still in under development, and could be there breaking changes but it will follow the SemVer convention.
 
 ## Contributing
+
 We value all feedback and contributions. If you find any issues or want to contribute,
 please feel free to [fill an issue](https://github.com/camunda-community-hub/camunda-helm/issues),
 or [create a PR](https://github.com/camunda-community-hub/camunda-helm/pulls).
 
 ## License
+
 This is open source software licensed using the Apache License 2.0. Please see [LICENSE](LICENSE) for details.
