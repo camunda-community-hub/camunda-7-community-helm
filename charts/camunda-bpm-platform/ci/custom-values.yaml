@@ -16,6 +16,9 @@ initContainers:
 annotations:
   dummy.annonation/key: value
 
+commonLabels:
+  dummy.label/key: label-value
+
 extraEnvs:
 - name: DB_VALIDATE_ON_BORROW
   value: "false"
