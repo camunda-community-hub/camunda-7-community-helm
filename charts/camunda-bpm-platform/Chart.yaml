@@ -3,7 +3,7 @@ name: camunda-bpm-platform
 description: |
   Community Helm chart for Camunda BPM Platform 7 (Engine, Tasklist, Cockpit, etc).
 type: application
-version: 7.6.5
+version: 7.6.6
 appVersion: 7.x.x
 keywords:
   - bpm
