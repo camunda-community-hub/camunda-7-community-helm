@@ -36,15 +36,11 @@ Common labels
 {{- define "camunda-bpm-platform.labels" -}}
 helm.sh/chart: {{ include "camunda-bpm-platform.chart" . }}
 {{ include "camunda-bpm-platform.selectorLabels" . }}
+{{ include "camunda-bpm-platform.customLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- if .Values.commonLabels }}
-{{- range $key, $val := .Values.commonLabels }}
-{{ $key }}: {{ $val | quote }}
-{{- end }}
-{{- end }}
 {{- end }}
 
 {{/*
@@ -53,6 +49,17 @@ Selector labels
 {{- define "camunda-bpm-platform.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "camunda-bpm-platform.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Custom labels
+*/}}
+{{- define "camunda-bpm-platform.customLabels" -}}
+{{- if .Values.commonLabels }}
+{{- range $key, $val := .Values.commonLabels }}
+{{ $key }}: {{ $val | quote }}
+{{- end }}
+{{- end }}
 {{- end }}
 
 {{/*

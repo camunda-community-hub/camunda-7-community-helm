@@ -29,6 +29,7 @@ spec:
       {{- end }}
       labels:
         {{- include "camunda-bpm-platform.selectorLabels" . | nindent 8 }}
+        {{- include "camunda-bpm-platform.customLabels" . | nindent 8 }}
     spec:
       {{- with .Values.image.pullSecrets }}
       imagePullSecrets:

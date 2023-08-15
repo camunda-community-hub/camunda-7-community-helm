@@ -17,7 +17,7 @@ annotations: {}
 # Custom labels to add to all deployed objects
 commonLabels: {}
 # Example
-#  my-custom-annotation: my-value
+#  my-custom-label: my-value
 
 image:
   repository: camunda/camunda-bpm-platform
