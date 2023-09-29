@@ -1,5 +1,8 @@
 The changelog is automatically generated using [git-chglog](https://github.com/git-chglog/git-chglog) and it follows [Keep a Changelog](https://keepachangelog.com) format.
 
+<a name="camunda-bpm-platform-7.6.7"></a>
+## [camunda-bpm-platform-7.6.7] - 2023-09-29
+
 <a name="camunda-bpm-platform-7.6.6"></a>
 ## [camunda-bpm-platform-7.6.6] - 2023-08-15
 
@@ -73,6 +76,7 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 <a name="camunda-bpm-platform-0.1.0"></a>
 ## camunda-bpm-platform-0.1.0 - 2020-11-12
 
+[camunda-bpm-platform-7.6.7]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-7.6.6...camunda-bpm-platform-7.6.7
 [camunda-bpm-platform-7.6.6]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-7.6.5...camunda-bpm-platform-7.6.6
 [camunda-bpm-platform-7.6.5]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-7.6.4...camunda-bpm-platform-7.6.5
 [camunda-bpm-platform-7.6.4]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-7.6.3...camunda-bpm-platform-7.6.4
