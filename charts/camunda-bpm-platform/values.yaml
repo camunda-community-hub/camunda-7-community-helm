@@ -66,6 +66,7 @@ service:
 metrics:
   enabled: false
   service:
+    enabled: true
     port: 9404
     portName: metrics
     protocol: TCP
@@ -115,7 +116,8 @@ livenessProbe:
 
 ingress:
   enabled: false
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
@@ -136,7 +138,8 @@ podAnnotations: {}
 podSecurityContext:
   fsGroup: 1000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -144,7 +147,8 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-resources: {}
+resources:
+  {}
   # If you do want to specify resources, uncomment the following lines,
   # adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
@@ -154,11 +158,13 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-extraVolumeMounts: []
+extraVolumeMounts:
+  []
   # - name: dummy-volume
   #   mountPath: /dummy/volume
 
-extraVolumes: []
+extraVolumes:
+  []
   # - name: dummy-volume
   #   hostPath:
   #     path: /tmp/dummy-volume
