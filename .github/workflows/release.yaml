@@ -30,7 +30,7 @@ jobs:
     needs: find-charts-to-release
     if: needs.find-charts-to-release.outputs.modified-charts-files
     runs-on: ubuntu-latest
-    container: quay.io/git-chglog/git-chglog:0.15.0
+    container: quay.io/git-chglog/git-chglog:0.15.4
     steps:
       - name: Checkout
         uses: actions/checkout@v2
