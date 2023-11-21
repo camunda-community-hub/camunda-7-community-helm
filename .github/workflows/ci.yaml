@@ -34,7 +34,7 @@ jobs:
         run: helm lint charts/*
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.4.0
+        uses: helm/chart-testing-action@v2.6.1
 
       - name: Run chart-testing (lint)
         run: ct lint --config .github/config/chart-testing.yaml
@@ -76,7 +76,7 @@ jobs:
           kubectl get nodes;
 
       - name: Run Chart Testing install
-        uses: helm/chart-testing-action@v2.4.0
+        uses: helm/chart-testing-action@v2.6.1
         with:
           command: install
           config: .github/config/chart-testing.yaml
