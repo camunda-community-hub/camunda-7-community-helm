@@ -12,6 +12,45 @@ entries:
           url: https://github.com/camunda/camunda-bpm-platform
     apiVersion: v2
     appVersion: 7.x.x
+    created: "2024-02-02T19:40:27.390944145Z"
+    description: 'Community Helm chart for Camunda BPM Platform 7 (Engine, Tasklist,
+      Cockpit, etc). '
+    digest: fe34ede72049a16f91cfcf9f8353f3635c6719f280750ddd2c8097a22a4309bd
+    home: https://camunda.com
+    icon: https://docs.camunda.org/get-started/img/Camunda-Circle.svg
+    keywords:
+    - bpm
+    - bpmn
+    - camunda-bpm-platform
+    - camunda-engine
+    - dmn
+    - process-engine
+    - workflow
+    maintainers:
+    - name: aabouzaid
+      url: https://tech.aabouzaid.com
+    - name: thecampagnards
+      url: https://konstantinsidorenko.fr
+    name: camunda-bpm-platform
+    sources:
+    - https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+    - https://github.com/camunda/docker-camunda-bpm-platform
+    - https://github.com/camunda/camunda-bpm-platform
+    type: application
+    urls:
+    - https://github.com/camunda-community-hub/camunda-7-community-helm/releases/download/camunda-bpm-platform-7.6.8/camunda-bpm-platform-7.6.8.tgz
+    version: 7.6.8
+  - annotations:
+      artifacthub.io/changes: ""
+      artifacthub.io/links: |
+        - name: Camunda BPM Platform 7 Helm chart
+          url: https://github.com/camunda-community-hub/camunda-helm/tree/main/charts/camunda-bpm-platform
+        - name: Camunda BPM Platform 7 Docker
+          url: https://github.com/camunda/docker-camunda-bpm-platform
+        - name: Camunda BPM Platform 7
+          url: https://github.com/camunda/camunda-bpm-platform
+    apiVersion: v2
+    appVersion: 7.x.x
     created: "2023-09-29T08:33:53.670208126Z"
     description: 'Community Helm chart for Camunda BPM Platform 7 (Engine, Tasklist,
       Cockpit, etc). '
@@ -556,4 +595,4 @@ entries:
     urls:
     - https://github.com/camunda/camunda-helm/releases/download/camunda-bpm-platform-0.1.0/camunda-bpm-platform-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-29T08:33:53.670557027Z"
+generated: "2024-02-02T19:40:27.391082152Z"
