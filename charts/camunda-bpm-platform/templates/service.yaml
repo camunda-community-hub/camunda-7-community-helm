@@ -15,7 +15,7 @@ spec:
   loadBalancerIP: {{ .Values.service.loadBalancerIP | quote }}
   {{- end }}
   ports:
-    - name: {{ .Values.service.portName }}
+    - name: {{ .Values.service.portName | quote }}
       protocol: {{ .Values.service.protocol }}
       targetPort: {{ .Values.service.portName }}
       port: {{ .Values.service.port }}
@@ -47,5 +47,5 @@ spec:
   - protocol: TCP
     port: {{ .Values.metrics.service.port }}
     targetPort: {{ .Values.metrics.service.portName }}
-    name: {{ .Values.metrics.service.portName }}
+    name: {{ .Values.metrics.service.portName | quote }}
 {{- end }}
