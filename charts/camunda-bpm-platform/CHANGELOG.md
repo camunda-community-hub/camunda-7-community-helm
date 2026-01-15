@@ -1,5 +1,12 @@
 The changelog is automatically generated using [git-chglog](https://github.com/git-chglog/git-chglog) and it follows [Keep a Changelog](https://keepachangelog.com) format.
 
+<a name="camunda-bpm-platform-7.6.11"></a>
+## [camunda-bpm-platform-7.6.11] - 2026-01-15
+
+### Pull Requests
+- Merge pull request [#77](https://github.com/camunda-community-hub/camunda-helm/issues/77) from op-euga/main
+
+
 <a name="camunda-bpm-platform-7.6.9"></a>
 ## [camunda-bpm-platform-7.6.9] - 2024-04-25
 
@@ -82,6 +89,7 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 <a name="camunda-bpm-platform-0.1.0"></a>
 ## camunda-bpm-platform-0.1.0 - 2020-11-12
 
+[camunda-bpm-platform-7.6.11]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-7.6.9...camunda-bpm-platform-7.6.11
 [camunda-bpm-platform-7.6.9]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-7.6.8...camunda-bpm-platform-7.6.9
 [camunda-bpm-platform-7.6.8]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-7.6.7...camunda-bpm-platform-7.6.8
 [camunda-bpm-platform-7.6.7]: https://github.com/camunda-community-hub/camunda-helm/compare/camunda-bpm-platform-7.6.6...camunda-bpm-platform-7.6.7
